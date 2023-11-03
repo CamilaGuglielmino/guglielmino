@@ -1,0 +1,37 @@
+html {
+    min-height: 100%;
+    position: relative;
+    
+}
+header {
+    position: sticky !important ; /* Hacemos que la cabecera tenga una posición fija */
+	top: 0 !important; /* Posicionamos la cabecera pegada arriba */	
+    background-color: 6699CC;
+}
+
+.grid-container {
+    display: grid;
+    column-gap: 30px;
+    grid-template-columns: auto auto auto;
+    padding: 5px;
+}
+
+.grid-item {
+    padding: 10px;
+    text-align: center;
+}
+
+footer {
+    position:absolute;
+    background-color: 6699CC;
+ 
+    text-align:center;
+    left:0;
+    width:100%;
+    bottom: 0;
+  
+    
+}
+.card{
+    position: static !important;
+}
