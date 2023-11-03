@@ -6,7 +6,7 @@ html {
 header {
     position: sticky !important ; /* Hacemos que la cabecera tenga una posición fija */
 	top: 0 !important; /* Posicionamos la cabecera pegada arriba */	
-    background-color: #e48200;
+    background-color: #e48200 !important;
 }
 
 .grid-container {
