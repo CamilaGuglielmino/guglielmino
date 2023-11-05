@@ -20,7 +20,7 @@
     <div class="grid-container">
       <div class="grid-item" style="text-align: left;">
 
-        <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
+        <a href="indexx.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
       </div>
       <div class="grid-item" style="text-align: center; padding: 20px;">
         <form class="d-flex" role="search">

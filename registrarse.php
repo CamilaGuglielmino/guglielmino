@@ -1,113 +1,257 @@
 <html>
-    <head>
-        <title>Registrarse</title>
+
+<head>
     <meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="styles.css">
-    </head>
-    <body>
-     <?php
-           $emailError=$usuarioError=$contraError=$contra2Error=$nombreError=$apellidoError=$edadError=$numeroError="";
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $Email = trim($_POST['Email']);
-                $usuario = trim($_POST['usuario']);
-                $contra = trim($_POST['contra']);
-                $contra2 = trim($_POST['contra2']);
-                $Nombre = trim($_POST['Nombre']);
-                $Apellido = trim($_POST['Apellido']);
-                $edad = trim($_POST['edad']);
-                $numero = trim($_POST['numero']);
-               
-                if($Email==""){
-                    $emailError="Ingrese su e-mail.<br>";
-                }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="externo/estilos.css" type="text/css">
+    <link rel="stylesheet" href="externo/form.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>
+        Rapibnb
+    </title>
+</head>
+<header>
+    <nav>
+        <div class="grid-container">
+            <div class="grid-item" style="text-align: left;">
+                <div class="grid-item" style="text-align: left;">
 
-                if(($usuario=="") || ((strlen($usuario)<5) || (strlen($usuario)>10))){
-                    $usuarioError="Ingrese un nombre de usuario.";
-                }
+                    <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
+                </div>
 
-                if(($contra=="") || (strlen($contra)!=6)){
-                    $contraError = "Ingrese una contrase&ntildea.";
-                }
+            </div>
+            <div class="grid-item" style="text-align: center; padding: 20px;">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <p></p>
+                    <a class="nav-link active" aria-current="page" href="#">
+                        <button type="button" class="btn btn-outline-danger" style="background-color: #1D2C49; ">
+                            Buscar
+                        </button></a>
+                </form>
+            </div>
+            <div class="grid-item" style="text-align: right; padding: 20px; align-content: center;">
+                <div class="hamburger">
+                    <div class="_layer -top"></div>
+                    <div class="_layer -mid"></div>
+                    <div class="_layer -bottom"></div>
+                </div>
+                <nav class="menuppal">
+                    <ul>
+                        <li><a href="iniciarsesion.php">Iniciar Sesión</a></li>
+                        <li><a href="registrarse.php">Registrarse</a></li>
+                        <li><a href="formalojamiento.php">Registrar tu alojamiento</a></li>
+                        <li><a href="editarPerfil.php">Editar Perfil</a></li>
+                    </ul>
+                </nav>
+                <style>
+                    .hamburger {
+                        position: fixed;
+                        background-color: transparent;
+                        top: 10;
+                        height: 30px;
+                        width: 30px;
+                        padding: 20px 20px;
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                        -webkit-transition: -webkit-transform 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+                        transition: transform 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+                        z-index: 1002;
+                        cursor: pointer;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                    }
 
-                if(($contra2=="") || ($contra2!=$contra)){
-                    $contra2Error = "Las contrase&ntildea no coinciden.";
-                }
+                    .hamburger.is-active {
+                        background-color: none;
+                    }
 
-                if(($Nombre=="") || (strlen($Nombre)<3)){
-                    $nombreError = "Ingrese un nombre.";
-                }
+                    ._layer {
+                        background: #1D2C49;
+                        margin-bottom: 4px;
+                        border-radius: 2px;
+                        width: 28px;
+                        height: 4px;
+                        opacity: 10;
+                        -webkit-transform: translate3d(0, 0, 0);
+                        transform: translate3d(0, 0, 0);
+                        -webkit-transition: all 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+                        transition: all 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+                    }
 
-                if(($Apellido=="") || (strlen($Apellido)<3)){
-                    $apellidoError = "Ingrese un apellido.";
-                }
+                    .hamburger:hover .-top {
+                        -webkit-transform: translateY(-100%);
+                        -ms-transform: translateY(-100%);
+                        transform: translateY(-100%);
+                    }
 
-                if($edad="" || ($edad<18)){
-                   $edadError="Ingrese una edad.";
-                }
+                    .hamburger:hover .-bottom {
+                        -webkit-transform: translateY(50%);
+                        -ms-transform: translateY(100%);
+                        transform: translateY(100%);
+                    }
 
-                if($numero==""){
-                    $numeroError ="Ingrese un n&uacutemero.";
-                }
+                    .hamburger.is-active .-top {
+                        -webkit-transform: translateY(200%) rotate(45deg) !important;
+                        -ms-transform: translateY(200%) rotate(45deg) !important;
+                        transform: translateY(200%) rotate(45deg) !important;
+                    }
 
+                    .hamburger.is-active .-mid {
+                        opacity: 0;
+                    }
 
-            }
-        
+                    .hamburger.is-active .-bottom {
+                        -webkit-transform: translateY(-200%) rotate(135deg) !important;
+                        -ms-transform: translateY(-200%) rotate(135deg) !important;
+                        transform: translateY(-200%) rotate(135deg) !important;
+                    }
 
-        ?>
+                    .menuppal.is_active {
+                        transform: translate3d(0px, 0px, 0px);
+                    }
 
-        <form method="POST">
-        <p style="text-align:left;"><span class="error"> (*) Campos obligatorios</span></p><br>
-        <h4 style="text-align:left;">Cuenta de usuario: </h4><br>
+                    .menuppal {
+                        background-color: rgba(255, 255, 255, 0.95);
+                        bottom: 0;
+                        height: 100%;
+                        left: 0;
+                        overflow-y: scroll;
+                        position: fixed;
+                        top: 0;
+                        transform: translate3d(0px, -100%, 0px);
+                        transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98) 0s;
+                        width: 100%;
+                        z-index: 1001;
+                    }
 
-        <span class="error">*</span> E-mail:<br>    
-            <input type="email" name="Email" ><br>
-        <span class ="valido">
-            <?php
-            echo("Ingrese un e-mail válido y que utilice con frecuencia.<br>");
-            ?>
-        </span>
-        <span class="error"> <?php echo $emailError; ?></span><br><br>
+                    .menuppal ul {
+                        margin: 0;
+                        padding: 0;
+                    }
 
-        <span class="error">*</span> Nombre de usuario:<br>
-        <input type="text" name="usuario" ><br>
-        <span class="valido"> 
-            <?php echo ("Debe tener entre 5 y 10 caracteres, puede contener letras y números, sin espacios en blanco ni caracteres especiales."); 
-            ?>
-        </span><br>
-        <span class="error"> <?php echo $usuarioError; ?></span><br><br>
+                    .menuppal ul li {
+                        list-style: none;
+                        text-align: center;
+                        font-family: Verdadna, Arial, Helvetica;
+                        color: #1D2C49;
+                        font-size: 1.5rem;
+                        line-height: 3em;
+                        height: 3em;
+                        color: #1D2C49;
+                        text-transform: none;
+                        font-weight: bold;
+                    }
 
-        <span class="error">*</span> Contrase&ntildea:</a><br>
-            <input type="password" name="contra" required=""><br>
-        <span class="error"> <?php echo $contraError; ?></span><br><br>
+                    .menuppal ul li a {
+                        text-decoration: none;
+                        color: #1D2C49;
+                    }
 
-        <span class="error">*</span> Confirmar contrase&ntildea:<br>
-            <input type="password" name="contra2" required=""><br>
-        <span class="error"> <?php echo $contra2Error; ?></span><br><br>
+                    .menuppal ul li a:hover {
+                        text-decoration: none;
+                        color: #1D2C49;
+                    }
+                </style>
+                <script>
+                    // selector
+                    var menu = document.querySelector('.hamburger');
 
-    <h4 style="text-align:left;">Informaci&oacuten personal:</h4><br> 
+                    // method
+                    function toggleMenu(event) {
+                        this.classList.toggle('is-active');
+                        document.querySelector(".menuppal").classList.toggle("is_active");
+                        event.preventDefault();
+                    }
 
-        <span class="error">*</span> Nombre(s):<br> 
-            <input type="text" name="Nombre"><br>
-        <span class="error"> <?php echo $nombreError; ?></span><br><br>
+                    // event
+                    menu.addEventListener('click', toggleMenu, false);
+                </script>
 
-        <span class="error">*</span> Apellido:<br> 
-            <input type="text" name="Apellido" required=""><br>
-        <span class="error"> <?php echo $apellidoError; ?></span><br><br>  
+            </div>
+        </div>
+</header>
 
-        <span class="error">*</span> Edad:<br> 
-            <input type="number" name="edad" required=""><br>
-        <span class="error"> <?php echo $edadError; ?></span><br><br>
-        
-        <span class="error">*</span> WhatsApp/Teléfono m&oacutevil:<br> 
-            <input type="number" name="numero" required=""><br>
-        <span class="error"> <?php echo $numeroError; ?></span><br><br>
+<body>
 
-        <input type="submit" name="registrarse" value="CREAR CUENTA">
+    <div class="signupFrm">
+        <form  action="usuarionuevo.php" method="POST">
+            <!--<p style="text-align:left;"><span class="error"> (*) Campos obligatorios</span></p><br>-->
+            <h1 class="title">Registrarse</h1>
+
+            <div class="inputContainer">
+                <input type="email" class="input" placeholder="ejemplo@gmail.com" name="Email">
+                <label for="" class="label" >Email</label>
+                <!--  <span class="valido">
+                    <?php
+                    echo ("Ingrese un e-mail válido y que utilice con frecuencia.<br>");
+                    ?> 
+                </span>
+                <span class="error"> <?php echo $emailError; ?></span><br><br>-->
+            </div>
+
+                <div class="inputContainer">
+                    <input type="text" class="input" placeholder="usuario" name="usuario">
+                    <label for="" class="label">Usuario</label>
+
+                </div>
+
+                <div class="inputContainer">
+                    <input type="password" class="input" placeholder="" name="contra">
+                    <label for="" class="label">Contraseña</label>
+                </div>
+
+                <div class="inputContainer">
+                    <input type="password" class="input" placeholder="" name="contra2"> 
+                    <label for="" class="label">Confirmar Contraseña</label>
+                </div>
+                <input type="submit" class="submitBtn" name="registrarse" value="Registrarse">
 
         </form>
-        
-            <?php
-            include("basedatos\BDregistrarse.php"); 
-            ?>
-    </body>
+    </div>
+    
+</body>
+<footer>
+    <p> - SEGUINOS EN NUESTRAS REDES SOCIALES - </p>
+    <div class="contenedor-icono">
+        <div class="container">
+            <div class="col">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-2">
+                        <a href="https://www.instagram.com/" TARGET="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-instagram" viewBox="0 0 20 20" color=#000>
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="col-md-auto">
+                        <a href="https://www.facebook.com" TARGET="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-facebook" viewBox="0 0 20 20" color=#000>
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="col col-lg-2">
+                        <a href="https://twitter.com/ TARGET=" _blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-twitter" viewBox="0 0 20 20" color=#000>
+                                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    © Camila Guglielmino - 2023
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</footer>
+
 </html>

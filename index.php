@@ -175,7 +175,7 @@
 
 <body>
   <br>
-  <h2 style=" text-align:center;"> Últimos </h2>
+  <h2 style=" text-align:center;"> Últimos alojamientos </h2>
   <div class="card-1">
     <?php
     include("mostrar/mostrar-tarjeta.php");

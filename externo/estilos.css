@@ -1,6 +1,5 @@
 html {
     min-height: 100%;
-    position: relative;
     
 
 }
@@ -10,6 +9,10 @@ header {
     top: 0 !important;
     /* Posicionamos la cabecera pegada arriba */
     background-color: #e48200 !important;
+    display: block !important;
+}
+body{
+    position: relative;
 }
 
 .grid-container {
