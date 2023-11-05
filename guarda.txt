@@ -1,0 +1,21 @@
+<?php
+    $emailError = $contraError = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $Email = $_POST['Email'];
+        $Contra = $_POST['Contra'];
+
+        if ($Email == "") {
+            $emailError = "Ingrese su correo electrónico.<br>";
+        }
+
+        if ($Contra == "") {
+            $contraError = "Ingrese su contraseña";
+        }
+    }
+    ?>
+
+     <?php
+    include("basedatos\BDusuarios.php");
+    ?>

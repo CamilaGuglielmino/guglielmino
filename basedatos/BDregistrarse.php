@@ -4,7 +4,7 @@ include("conexion.php");
 
 if (isset($_POST['registrarse'])) {
     if (strlen($_POST['Email']) >= 1) {
-	    
+	    $ID = mt_rand(1,999);
         $Email = trim($_POST['Email']);
         $usuario = trim($_POST['usuario']);
         $contra = trim($_POST['contra']);
@@ -14,8 +14,9 @@ if (isset($_POST['registrarse'])) {
         $edad = trim($_POST['edad']);
         $numero = trim($_POST['numero']);
         
+        
        
-	    $consulta = "INSERT INTO registrousuario(correo,usuario,contraseña,contraseña2,nombre,apellido,edad,telefono) VALUES ('$Email','$usuario','$contra','$contra2','$Nombre','$Apellido','$edad','$numero')";
+	    $consulta = "INSERT INTO registrousuario(ID,correo,usuario,contraseña,contraseña2,nombre,apellido,edad,telefono) VALUES ('$ID','$Email','$usuario','$contra','$contra2','$Nombre','$Apellido','$edad','$numero')";
 	    $resultado = mysqli_query($conexRapiBnB,$consulta);
 
 	    if ($resultado) {

@@ -11,7 +11,7 @@ $result = mysqli_query($conexRapiBnB, $sql);
 <div class="card" style="width: 18rem;">
   <img alt="" src="<?php echo $record['image']; ?>"">
   <div class="card-body">
-    <h5 class="card-title"><a href="#"><?php echo $record['titulo']; ?></a></h5>
+    <h5 class="card-title"><a href="alojamiento.php"><?php echo $record['titulo']; ?></a></h5>
     <p class="card-text"><?php echo $record['descripcion']; ?>
   </div>
   
