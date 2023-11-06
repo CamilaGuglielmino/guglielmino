@@ -2,7 +2,7 @@
 include("basedatos/conexion.php");
 include("usuarionuevo.php");
 include("basedatos/BDusuarios.php");
-require_once("basedatos/validar_sesion.php");
+include("basedatos/validar_sesion.php");
 //session_start ();
 
 ?>
@@ -189,13 +189,13 @@ require_once("basedatos/validar_sesion.php");
       <div class="row">
         <div class="col-6">
 
-          <img src="https://picsum.photos/250" class="img-thumbnail" alt="foto de perfil">
+          <img src="https://picsum.photos/250" class="img-thumbnail" alt="foto de perfil" style="position: static;">
         </div>
 
         <div class="col-6">
 
           <div class="inputContainer">
-            <input type="text" class="input" placeholder="usuario" name="usuario">
+            <input type="text" class="input" placeholder="usuario" name="usuario" value="<?php echo ("$usuario")?>">
             <label for="" class="label">Cambiar nombre de usuario</label>
 
           </div>

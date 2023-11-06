@@ -1,10 +1,12 @@
 .signupFrm {
     display: flex;
+    position: static !important;
     justify-content: center;
     align-items: center;
     
   }
   .form {
+    position: static;
     background-color: white;
     width: 600px;
     border-radius: 8px;
@@ -16,24 +18,24 @@
     margin-bottom: 10px;
   }
   .inputContainer {
-    position: relative;
+    position: static;
     height: 45px;
     width: 130%;
-    margin-bottom: 17px;
+    margin-bottom: 27px;
   }
   /* Style the inputs */
 
 .input {
-  display: block;
-    position: absolute;
+    position: static;
+    display: flex;
     top: 0px;
     left: 0px;
     height: 100%;
     width: 100%;
     border: 2px solid #1D2C49;
-    border-radius: 7px;
+    border-radius: 10px;
     font-size: 16px;
-    padding: 0 20px;
+    padding: 0 60px;
     outline: none;
     background: none;
     z-index: 1;
@@ -44,8 +46,12 @@
   ::placeholder {
     color: transparent;
   }
+.col-6{
+    position: static !important;
+
+  }
   .label {
-    position: absolute;
+    position: static;
     top: 15px;
     left: 15px;
     padding: 0 4px;
@@ -76,7 +82,7 @@
     top: -7px;
     left: 3px;
     z-index: 10;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
     color: #e48200;
   }
