@@ -181,7 +181,18 @@ include("basedatos/validar_sesion.php");
       </div>
   </nav>
 </header>
+<?php
+    require_once("basedatos/conexion.php");
+    
+    $email = $_SESSION['user'] ;
+    
+    
+    $sql= "SELECT * FROM registrousuario where correo='$email' ";
+    $resultado = mysqli_query($conexRapiBnB, $sql);
+    
+    
 
+?>
 <body>
   <div class="signupFrm">
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
