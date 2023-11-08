@@ -13,6 +13,7 @@ header {
 }
 body{
     position: relative;
+    display: flex;
 }
 
 .grid-container {
@@ -28,7 +29,8 @@ body{
 }
 
 footer {
-    position: absolute;
+    
+    
     background-color: #e48200;
     text-align: center;
     left: 0;
