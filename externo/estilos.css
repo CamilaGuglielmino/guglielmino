@@ -1,19 +1,16 @@
 html {
     min-height: 100%;
     
-
 }
 header {
     position: sticky !important;
-    /* Hacemos que la cabecera tenga una posición fija */
     top: 0 !important;
-    /* Posicionamos la cabecera pegada arriba */
     background-color: #e48200 !important;
     display: block !important;
 }
+
 body{
-    position: relative;
-    display: flex;
+    position: absolute !important;   
 }
 
 .grid-container {
@@ -29,14 +26,12 @@ body{
 }
 
 footer {
-    
-    
+    position: sticky !important;
     background-color: #e48200;
     text-align: center;
     left: 0;
     width: 100%;
     bottom: 0;
-
 
 }
 .card {
@@ -47,10 +42,10 @@ footer {
 .card-1 {
     display: grid;
     display: flex;
-    
     grid-template-columns: 100px 100px 100px ;
     grid-gap: 5px;
     justify-content: space-evenly;
     align-content: center;
 
 }
+

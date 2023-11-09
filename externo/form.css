@@ -6,7 +6,7 @@
     
   }
   .form {
-    position: static;
+    
     background-color: white;
     width: 600px;
     border-radius: 8px;
@@ -18,7 +18,8 @@
     margin-bottom: 10px;
   }
   .inputContainer {
-    position: static;
+    
+    display: contents;
     height: 45px;
     width: 130%;
     margin-bottom: 27px;

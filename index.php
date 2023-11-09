@@ -15,8 +15,7 @@
 <header>
   <nav>
     <div class="grid-container">
-      <div class="grid-item" style="text-align: left;">
-
+      <div class="grid-item" style="text-align: left !important;">
         <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
       </div>
       <div class="grid-item" style="text-align: center; padding: 20px;">
@@ -29,7 +28,7 @@
             </button></a>
         </form>
       </div>
-      <div class="grid-item" style="text-align: right; padding: 20px; align-content: center;">
+      <div class="grid-item" style="text-align: right !important; ">
         <div class="hamburger">
           <div class="_layer -top"></div>
           <div class="_layer -mid"></div>
@@ -43,6 +42,8 @@
             
           </ul>
         </nav>
+      </div>
+    </div>
         <style>
           .hamburger {
             position: fixed;
@@ -169,7 +170,7 @@
           menu.addEventListener('click', toggleMenu, false);
         </script>
 
-      </div>
+      
   </nav>
 </header>
 
@@ -181,16 +182,6 @@
     include("mostrar/mostrar-tarjeta.php");
     ?>
   </div>
-
-
-
-
-
-
-
-  <h3> Registros </h3>
-
-  -->
 
 </body>
 

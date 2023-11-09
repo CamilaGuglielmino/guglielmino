@@ -1,4 +1,5 @@
-<?php
+<html>
+    <?php
     require_once("basedatos/conexion.php");
     
     $email = $_POST['email'];
@@ -10,10 +11,19 @@
     $_SESSION['user'] = $email;
     $ej = mysqli_num_rows($resultado);
     if($ej > 0) {
-        header("Location: indexx.php");
+        $admi="adm@gmail.com";
+        if(!($email == $admi)){
+            header("Location: indexx.php");
+        }else{
+            header("Location: indexadm.php");
+        }
+        
+        
     }
     else{
+    
         header("Location: iniciarsesion.php");
     }
 
 ?>
+</html>

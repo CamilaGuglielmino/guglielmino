@@ -43,7 +43,7 @@
                         <li><a href="iniciarsesion.php">Iniciar Sesión</a></li>
                         <li><a href="registrarse.php">Registrarse</a></li>
                         <li><a href="formalojamiento.php">Registrar tu alojamiento</a></li>
-                        <li><a href="editarPerfil.php">Editar Perfil</a></li>
+                        
                     </ul>
                 </nav>
                 <style>

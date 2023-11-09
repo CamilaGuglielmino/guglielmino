@@ -1,14 +1,14 @@
 <?php
-require_once("basedatos/conexion.php");
+/*require_once("basedatos/conexion.php");
 $emailError = $usuarioError = $contraError = $contra2Error = $nombreError = $apellidoError = $edadError = $numeroError = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Email = trim($_POST['Email']);
     $usuario = trim($_POST['usuario']);
-    $contra = trim($_POST['contra']);
-    $contra2 = trim($_POST['contra2']);
+    $contraseña = trim($_POST['contra']);
+    $contraseña2 = trim($_POST['contra2']);
 
-
-    if ($Email == "") {
+/*
+    if ($correo == "") {
         $emailError = "Ingrese su e-mail.<br>";
     }
 
@@ -16,14 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuarioError = "Ingrese un nombre de usuario.";
     }
 
-    if (($contra == "") || (strlen($contra) != 6)) {
+    if (($contraseña == "") || (strlen($contraseña2) != 6)) {
         $contraError = "Ingrese una contrase&ntildea.";
     }
 
-    if (($contra2 == "") || ($contra2 != $contra)) {
+    if (($contraseña2 == "") || ($contra2 != $contraseña)) {
         $contra2Error = "Las contrase&ntildea no coinciden.";
     }
-}
+}*/
 require_once("basedatos/conexion.php");
 
 if (isset($_POST['registrarse'])) {
@@ -31,8 +31,8 @@ if (isset($_POST['registrarse'])) {
         $ID = mt_rand(1, 999);
         $Email = trim($_POST['Email']);
         $usuario = trim($_POST['usuario']);
-        $contra = trim($_POST['contra']);
-        $contra2 = trim($_POST['contra2']);
+        $contraseña = trim($_POST['contra']);
+        $contraseña2 = trim($_POST['contra2']);
 
 
         $consulta = "INSERT INTO registrousuario(ID,correo,usuario,contraseña,contraseña2) VALUES ('$ID','$Email','$usuario','$contra','$contra2')";
@@ -42,7 +42,7 @@ if (isset($_POST['registrarse'])) {
         // $ej = mysqli_num_rows($resultado);
         if ($resultado) {
             session_start();
-            $_SESSION["user"] = $usuario;
+            $_SESSION["user"] = $Email;
             header("Location: editarPerfil.php");
         } else {
         }

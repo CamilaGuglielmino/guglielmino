@@ -40,6 +40,8 @@
         </div>
         <nav class="menuppal">
           <ul>
+            <li><a href="#">Bienvenido <?php echo $_SESSION['user'] ?></a></li>
+            <li><a href="cuenta.php">Mi cuenta</a></li>
             <li><a href="editarPerfil.php">Editar Perfil</a></li>
             <li><a href="formalojamiento.php">Registrar tu alojamiento</a></li>
             <li><a href="logout.php">Cerrar Sesión</a></li>
@@ -183,16 +185,6 @@
     include("mostrar/mostrar-tarjeta.php");
     ?>
   </div>
-
-
-
-
-
-
-
-  <h3> Registros </h3>
-
-  -->
 
 </body>
 

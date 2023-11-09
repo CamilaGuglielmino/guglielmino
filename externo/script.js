@@ -9,3 +9,7 @@ function toggleMenu(event) {
 
 // event
 menu.addEventListener('click', toggleMenu, false);
+
+
+//el formulario se envia
+alert('Usuario creado con éxito correctamente. Bienvenido');

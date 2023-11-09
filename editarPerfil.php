@@ -184,23 +184,33 @@ include("basedatos/validar_sesion.php");
 <?php
     require_once("basedatos/conexion.php");
     
+    
     $email = $_SESSION['user'] ;
     
-        
+  
     $sql= "SELECT * FROM registrousuario where correo='$email' ";
     $resultado = mysqli_query($conexRapiBnB, $sql);
-    $record = mysqli_fetch_assoc($resultado);
-    $usuario = $record['usuario'] ;
+    while($row = mysqli_fetch_array($resultado)){
+   
+    $usuario = $row['usuario'] ;
+    $contraseña =$row['contraseña'];
+    $contraseña2 =$row['contraseña2'];
+    $Nombre = $row['nombre'];
+    $Apellido = $row['apellido'];
+    $edad = $row['edad'];
+    $numero = $row['telefono'];
+    $intereses = $row['intereses'];
+    $image = $row['imagen'];
+    }
     
 
 ?>
 <body>
   <div class="signupFrm">
-    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
-      <h1 class="title">Bienvenido <?php echo $usuario ?></h1>
+    <form action="editar.php" method="POST" >
+      <h1 class="title">Bienvenido <?php echo $usuario; echo $email?></h1>
       <div class="row">
         <div class="col-6">
-
           <img src="https://picsum.photos/250" class="img-thumbnail" alt="foto de perfil" style="position: static;">
         </div>
 
@@ -209,37 +219,53 @@ include("basedatos/validar_sesion.php");
           <div class="inputContainer">
             <input type="text" class="input" placeholder="usuario" name="usuario" value="<?php echo ("$usuario")?>">
             <label for="" class="label">Cambiar nombre de usuario</label>
-
+          </div>
+          <div class="inputContainer">
+            <input type="password" class="input" placeholder="contraseña" name="contraseña" value="<?php echo ("$contraseña")?>">
+            <label for="" class="label">Cambiar nombre de usuario</label>
+          </div>
+          <div class="inputContainer">
+            <input type="password" class="input" placeholder="contraseña" name="contraseña2" value="<?php echo ("$contraseña2")?>">
+            <label for="" class="label">Cambiar nombre de usuario</label>
+          </div>
+          <div class="inputContainer">
+            <input type="button" class="submitBtn" name="verificar" value="verficar">
+            
           </div>
         </div>
       </div>
 
       <h4 style="text-align:left;">Informaci&oacuten personal:</h4><br>
       <div class="inputContainer">
-        <input type="text" name="Nombre" class="input" ">
+        <input type="text" name="nombre" class="input" value="<?php echo ("$Nombre")?>">
         <label for="" class="label">Nombre</label>
       </div>
       <div class="inputContainer">
-        <input type="text" name="Apellido" class="input">
+        <input type="text" name="apellido" class="input" value="<?php echo ("$Apellido")?>">
         <label for="" class="label">Apellido</label>
       </div>
       <div class="inputContainer">
-        <input type="number" name="edad" class="input" >
+        <input type="number" name="edad" class="input" value="<?php echo ("$edad")?>" >
         <label for="" class="label">Edad</label>
       </div>
       <div class="inputContainer">
-        <input type="number" name="numero" class="input" >
+        <input type="number" name="numero" class="input" value="<?php echo ("$numero")?>">
         <label for="" class="label">Teléfono</label>
       </div>
       <div class="inputContainer">
-        <input type="text" name="intereses" class="input" value="">
+        <input type="text" name="intereses" class="input" value="<?php echo ("$intereses")?>">
         <label for="" class="label">Interéses</label>
       </div>
       <div class="inputContainer">
-        <input type="file" name="intereses" class="input">
+        <input type="file" name="imagen" class="input" value="<?php echo ("$image")?>">
         <label for="" class="label">Cambiar foto de perfil</label>
       </div>
-        <input class="submitBtn" type="submit" name="guardar" value="Guardar Cambios">
+      <div class="inputContainer">
+      <input class="submitBtn" type="submit" name="editar" value="Guardar Cambios">
+      </div>
+      <br>
+      <br>
+        
 
     </form>
   </div>
