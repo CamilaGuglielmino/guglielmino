@@ -180,7 +180,7 @@
             <form action="login.php" method="post">
             <h1 class="title">Iniciar Sesión</h1>
                 <div class="inputContainer">
-                <input type="text" class="input" placeholder="name@example.com" name="email">
+                <input type="text" class="input" placeholder="name@example.com" name="email" required>
                 <label for="" class="label">Email</label>
                 <!--  <span class="valido">
                     <?php
@@ -191,7 +191,7 @@
                 </div>
                
                 <div class="inputContainer">
-                    <input type="password" class="input" placeholder="" name="contraseña">
+                    <input type="password" class="input" placeholder="" name="contraseña" required>
                     <label for="" class="label">Contraseña</label>
                 </div>
 

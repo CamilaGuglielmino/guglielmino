@@ -2,7 +2,8 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="externo/estilos.css" type="text/css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
@@ -177,11 +178,13 @@
 <body>
   <br>
   <h2 style=" text-align:center;"> Últimos alojamientos </h2>
-  <div class="card-1">
+  <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">
+  
     <?php
     include("mostrar/mostrar-tarjeta.php");
     ?>
   </div>
+  
 
 </body>
 

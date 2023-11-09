@@ -1,5 +1,10 @@
-<!DOCTYPE html>
 <html>
+<?php
+// require_once 'basedatos\validar_sesion.php';
+include_once("basedatos/BDalojamiento.php");
+$ID = isset($_GET['ID']) ? $_GET['ID'] : '';
+
+?>
 
 <head>
     <meta charset="utf-8">
@@ -175,6 +180,35 @@
         </div>
     </nav>
 </header>
+
+<body>
+    <?php
+
+    $sql = "SELECT * FROM registroalojamiento where ID='$ID'";
+    $resultado = mysqli_query($conexRapiBnB, $sql);
+    if ($resultado) {
+        while ($record = mysqli_fetch_array($resultado)) {
+            
+        
+    
+    ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 order-md-1">
+            <img alt="" src="<?php echo $record['image']; ?>">
+
+            </div>
+            <div class="col-md-6 order-md-2">
+                <h2><?php echo $record['titulo']?></h2>
+            </div>
+
+        </div>
+    </div>
+    <?php
+}
+}?>
+</body>
+
 <footer>
     <p> - SEGUINOS EN NUESTRAS REDES SOCIALES - </p>
     <div class="contenedor-icono">

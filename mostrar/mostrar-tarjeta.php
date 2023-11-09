@@ -6,20 +6,26 @@ $result = mysqli_query($conexRapiBnB, $sql);
 
 
 
+
     while ($record = mysqli_fetch_assoc($result)) {
+      $ID=$record["ID"];
 ?>
-<div class="card" style="width: 18rem;">
-  <img alt="" src="<?php echo $record['image']; ?>"">
+
+<div class="col" style=" position:static;">
+<div class="card shadow sm" >
+  <img alt="" src="<?php echo $record['image']; ?>">
   <div class="card-body">
-    <h5 class="card-title"><a href="alojamiento.php"><?php echo $record['titulo']; ?></a></h5>
+    <h5 class="card-title"><a href="alojamiento.php?ID=<?php echo $ID;?>"><?php echo $record['titulo'], $ID;   ?></a></h5>
     <p class="card-text"><?php echo $record['descripcion']; ?>
   </div>
   
-  <div class="card-body">
+  <div class="d-flex justify-content.between aling-items-center">
     <div class="desc"><?php echo $record['ciudad']; ?></div>
     <div class="desc"><?php echo $record['costo']; ?></div>
   </div>
 </div>
+</div>
+
         
 <?php
     }

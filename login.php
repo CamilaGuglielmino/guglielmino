@@ -15,7 +15,7 @@
         if(!($email == $admi)){
             header("Location: indexx.php");
         }else{
-            header("Location: indexadm.php");
+            header("Location: administrador/indexadm.php");
         }
         
         

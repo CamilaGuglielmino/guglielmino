@@ -39,11 +39,7 @@ if ($inc) {
             echo(" $fecha_fin ");   
           
         ?>
-        <div class="cardheader">
-            <div class="avatar">
-                <img alt="" src="<?php echo ("$imagen"); ?>" width=80px height=auto">
-            </div>
-        </div><?php
+       <?php
         }
     }
 }
