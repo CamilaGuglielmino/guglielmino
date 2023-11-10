@@ -3,7 +3,7 @@
 // require_once 'basedatos\validar_sesion.php';
 include_once("basedatos/BDalojamiento.php");
 $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
-
+$email=$_SESSION['user'];
 ?>
 
 <head>
@@ -188,7 +188,6 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
     $resultado = mysqli_query($conexRapiBnB, $sql);
     if ($resultado) {
         while ($record = mysqli_fetch_array($resultado)) {
-            
         
     
     ?>

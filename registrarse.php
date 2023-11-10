@@ -184,7 +184,7 @@
             <h1 class="title">Registrarse</h1>
 
             <div class="inputContainer">
-                <input type="email" class="input" placeholder="ejemplo@gmail.com" name="Email">
+                <input type="email" class="input" placeholder="ejemplo@gmail.com" name="Email" required>
                 <label for="" class="label" >Email</label>
                 <!--  <span class="valido">
                     <?php
@@ -195,21 +195,21 @@
             </div>
 
                 <div class="inputContainer">
-                    <input type="text" class="input" placeholder="usuario" name="usuario">
+                    <input type="text" class="input" placeholder="usuario" name="usuario" required>
                     <label for="" class="label">Usuario</label>
 
                 </div>
 
                 <div class="inputContainer">
-                    <input type="password" class="input" placeholder="" name="contra">
+                    <input type="password" class="input" placeholder="" name="contra" required>
                     <label for="" class="label">Contraseña</label>
                 </div>
 
                 <div class="inputContainer">
-                    <input type="password" class="input" placeholder="" name="contra2"> 
+                    <input type="password" class="input" placeholder="" name="contra2" required> 
                     <label for="" class="label">Confirmar Contraseña</label>
                 </div>
-                <input type="submit" class="submitBtn" name="registrarse" value="Registrarse">
+                <input type="submit" class="submitBtn" name="registrarse" value="Registrarse" >
 
         </form>
     </div>

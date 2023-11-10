@@ -178,9 +178,10 @@
 </header>
 
 <body>
-  <br>
-  <h2> Encontra tu pr&oacutexima estadia</h2>
-  <div class="card-1">
+<br>
+  <h2 style=" text-align:center;"> Últimos alojamientos </h2>
+  <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">
+  
     <?php
     include("mostrar/mostrar-tarjeta.php");
     ?>

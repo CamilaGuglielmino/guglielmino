@@ -13,7 +13,9 @@
     if($ej > 0) {
         $admi="adm@gmail.com";
         if(!($email == $admi)){
-            header("Location: indexx.php");
+            echo "<script> alert ('Bienvenido');
+            Location href=' indexx.php ', </scrip>";
+            
         }else{
             header("Location: administrador/indexadm.php");
         }
