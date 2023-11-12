@@ -27,10 +27,10 @@ if (isset($_SESSION['user']) ){
       </div>
       <div class="grid-item" style="text-align: center; padding: 20px;">
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control me-2" name="busquedad" type="search" placeholder="Search" aria-label="Search">
           <p></p>
           <a class="nav-link active" aria-current="page" href="#">
-            <button type="button" class="btn btn-outline-danger" style="background-color: #1D2C49; ">
+            <button type="button" name="enviar" class="btn btn-outline-danger" style="background-color: #1D2C49; ">
               Buscar
             </button></a>
         </form>
