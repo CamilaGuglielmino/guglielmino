@@ -11,9 +11,9 @@ $result = mysqli_query($conexRapiBnB, $sql);
       $ID=$record["ID"];
 ?>
 
-<div class="col" style=" position:static;">
-<div class="card shadow sm" >
-  <img alt="" src="<?php echo $record['image']; ?>">
+<div class="col" >
+<div class="card shadow sm" id="card">
+  <img alt="" src="<?php echo $record['imagen']; ?>" class="img-thumbnail" alt="foto de perfil" style="position: static;">
   <div class="card-body">
     <h5 class="card-title"><a href="alojamiento.php?ID=<?php echo $ID;?>"><?php echo $record['titulo'], $ID;   ?></a></h5>
     <p class="card-text"><?php echo $record['descripcion']; ?>

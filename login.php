@@ -5,7 +5,7 @@
     $email = $_POST['email'];
     $contraseña = $_POST['contraseña'];
     
-    $sql= "SELECT * FROM registrousuario where correo='$email' and contraseña= '$contraseña'";
+    $sql= "SELECT * FROM registrousuario where correo='$email' and contra= '$contraseña'";
     $resultado = mysqli_query($conexRapiBnB,$sql);
     session_start();
     $_SESSION['user'] = $email;
@@ -13,18 +13,18 @@
     if($ej > 0) {
         $admi="adm@gmail.com";
         if(!($email == $admi)){
-            echo "<script> alert ('Bienvenido');
-            Location href=' indexx.php ', </scrip>";
-            
+            $mensaje = 'Bienvenido'; // se guarda en mensaje el texto que quieras mostrar
+            header("Location: indexx.php?Message=" . urlencode($mensaje));
+   
         }else{
             header("Location: administrador/indexadm.php");
-        }
-        
+        }  
         
     }
     else{
-    
-        header("Location: iniciarsesion.php");
+        $mensaje = 'Email o contraseña incorrecta'; // se guarda en mensaje el texto que quieras mostrar
+        header("Location: iniciarsesion.php?Message=" . urlencode($mensaje));
+        
     }
 
 ?>

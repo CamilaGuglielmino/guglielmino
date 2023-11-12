@@ -19,8 +19,15 @@ if (isset($_POST['editar'])) {
         $numero = trim($_POST['numero']);
         $intereses = trim($_POST['intereses']);
         $imagen = '';
+    
+        $nombreimg = $_FILES["imagen"]["name"];
+        $archivo = $_FILES["imagen"]["tmp_name"];
+        $ruta ="img_perfil";
+        $ruta = $ruta."/".$nombreimg;
+        move_uploaded_file($archivo,$ruta);
+        $imagen = $ruta;
        
-        $sql = "UPDATE registrousuario SET usuario='$usuario', contraseña='$contraseña', contraseña2='$contraseña2', nombre='$Nombre', apellido='$Apellido', edad='$edad', telefono='$numero', intereses = '$intereses', imagen = '$imagen' where correo='$email'";
+        $sql = "UPDATE registrousuario SET usuario='$usuario', contra='$contraseña', contra2='$contraseña2', nombre='$Nombre', apellido='$Apellido', edad='$edad', telefono='$numero', intereses = '$intereses', imagen = '$imagen' where correo='$email'";
         $resultado = mysqli_query($conexRapiBnB,$sql);
           
          

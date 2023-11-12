@@ -1,5 +1,10 @@
 <?php
-    require_once 'basedatos\validar_sesion.php';
+    include 'basedatos\validar_sesion.php';
+    
+if (isset($_GET['Message'])) {
+print '<script type="text/javascript">alert("' . $_GET['Message'] . '");</script>';
+
+         }
 ?>
 <html>
 
@@ -17,6 +22,7 @@
 
 <header>
   <nav>
+    
     <div class="grid-container">
       <div class="grid-item" style="text-align: left;">
 
@@ -178,6 +184,7 @@
 </header>
 
 <body>
+<br>
 <br>
   <h2 style=" text-align:center;"> Últimos alojamientos </h2>
   <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">

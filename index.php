@@ -1,3 +1,9 @@
+<?php
+if (isset($_SESSION['user']) ){
+  header("Location: indexx.php");
+}
+
+?>
 <html>
 
 <head>
@@ -29,7 +35,7 @@
             </button></a>
         </form>
       </div>
-      <div class="grid-item" style="text-align: right !important; ">
+      <div class="grid-item" style="text-align: right !important;  z-index: 1000;">
         <div class="hamburger">
           <div class="_layer -top"></div>
           <div class="_layer -mid"></div>
@@ -57,7 +63,7 @@
             transform: translate3d(0, 0, 0);
             -webkit-transition: -webkit-transform 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
             transition: transform 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
-            z-index: 1002;
+            z-index: 1004 !important;
             cursor: pointer;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -189,7 +195,7 @@
 </body>
 
 <footer>
-  <p> - SEGUINOS EN NUESTRAS REDES SOCIALES - </p>
+  <p> - Nuestras redes Sociales - </p>
   <div class="contenedor-icono">
     <div class="container">
       <div class="col">

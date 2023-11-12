@@ -182,93 +182,111 @@ include("basedatos/validar_sesion.php");
   </nav>
 </header>
 <?php
-    require_once("basedatos/conexion.php");
-    
-    
-    $email = $_SESSION['user'] ;
-    
-  
-    $sql= "SELECT * FROM registrousuario where correo='$email' ";
-    $resultado = mysqli_query($conexRapiBnB, $sql);
-    while($row = mysqli_fetch_array($resultado)){
-   
-    $usuario = $row['usuario'] ;
-    $contraseña =$row['contraseña'];
-    $contraseña2 =$row['contraseña2'];
-    $Nombre = $row['nombre'];
-    $Apellido = $row['apellido'];
-    $edad = $row['edad'];
-    $numero = $row['telefono'];
-    $intereses = $row['intereses'];
-    $image = $row['imagen'];
-    }
-    
+require_once("basedatos/conexion.php");
+
+
+$email = $_SESSION['user'];
+
+
+$sql = "SELECT * FROM registrousuario where correo='$email' ";
+$resultado = mysqli_query($conexRapiBnB, $sql);
+while ($row = mysqli_fetch_array($resultado)) {
+
+  $usuario = $row['usuario'];
+  $contraseña = $row['contra'];
+  $contraseña2 = $row['contra2'];
+  $Nombre = $row['nombre'];
+  $Apellido = $row['apellido'];
+  $edad = $row['edad'];
+  $numero = $row['telefono'];
+  $intereses = $row['intereses'];
+  $image = $row['imagen'];
+}
+
 
 ?>
+
 <body>
-  <div class="signupFrm">
-    <form action="editar.php" method="POST" >
-      <h1 class="title">Bienvenido <?php echo $usuario; echo $email?></h1>
-      <div class="row">
-        <div class="col-6">
-          <img src="https://picsum.photos/250" class="img-thumbnail" alt="foto de perfil" style="position: static;">
-        </div>
 
-        <div class="col-6">
-
-          <div class="inputContainer">
-            <input type="text" class="input" placeholder="usuario" name="usuario" value="<?php echo ("$usuario")?>">
-            <label for="" class="label">Cambiar nombre de usuario</label>
-          </div>
-          <div class="inputContainer">
-            <input type="password" class="input" placeholder="contraseña" name="contraseña" value="<?php echo ("$contraseña")?>">
-            <label for="" class="label">Cambiar nombre de usuario</label>
-          </div>
-          <div class="inputContainer">
-            <input type="password" class="input" placeholder="contraseña" name="contraseña2" value="<?php echo ("$contraseña2")?>">
-            <label for="" class="label">Cambiar nombre de usuario</label>
-          </div>
-          <div class="inputContainer">
-            <input type="button" class="submitBtn" name="verificar" value="verficar">
-            
+  <form action="editar.php" method="POST">
+    <h1 class="title">Bienvenido <?php echo $usuario; ?></h1>
+    <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <img src="<?php echo $image ?>" class="card-img-top" alt="foto de perfil">
+          <div class="card-body">
+            <label for="formFile" class="form-label">Cambiar foto de perfil</label>
+            <input class="form-control" type="file" id="formFile" name="imagen">
           </div>
         </div>
       </div>
+      <div class="col-6">
+        <label>Usuario: <?php echo ("$usuario") ?> </label>
+       
+        <div class="mb-3">
+          <label for="formFile" class="form-label">contraseña</label>
+          <input type="password" name="contraseña" class="form-control" value="<?php echo ("$contraseña") ?>">
+        </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">contraseña</label>
+          <input type="password" name="contraseña2" class="form-control" value="<?php echo ("$contraseña2") ?>">
+        </div>
+          <div>
+          
 
-      <h4 style="text-align:left;">Informaci&oacuten personal:</h4><br>
-      <div class="inputContainer">
-        <input type="text" name="nombre" class="input" value="<?php echo ("$Nombre")?>">
-        <label for="" class="label">Nombre</label>
+
+
+        </div>
+      </div>
+      <p style="align-content: center;">_______________________________________________________________________________________________________________________________________________________</p>
+
+
+      <h4 style="text-align:center;">Informaci&oacuten personal:</h4><br>
+      <div class="row g-2">
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Nombre</label>
+          <input type="text" name="nombre" class="form-control" value="<?php echo ("$Nombre") ?>">
+        </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Apellido</label>
+          <input type="text" name="apellido" class="form-control" value="<?php echo ("$Apellido") ?>">
+        </div>
+      </div>
+      <div class="row g-2">
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="number" name="edad" class="form-control" id="floatingInputGrid" placeholder="" value="<?php echo ("$edad") ?>">
+            <label for="floatingInputGrid">Edad</label>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <input type="number" name="numero" class="form-control" id="floatingInputGrid" placeholder="" value="<?php echo ("$numero") ?>">
+            <label for="floatingInputGrid">telefono</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Interéses</label>
+        <input type="text" name="intereses" class="form-control" value="<?php echo ("$intereses") ?>">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Cambiar foto de perfil</label>
+        <input class="form-control" type="file" id="formFile">
       </div>
       <div class="inputContainer">
-        <input type="text" name="apellido" class="input" value="<?php echo ("$Apellido")?>">
-        <label for="" class="label">Apellido</label>
-      </div>
-      <div class="inputContainer">
-        <input type="number" name="edad" class="input" value="<?php echo ("$edad")?>" >
-        <label for="" class="label">Edad</label>
-      </div>
-      <div class="inputContainer">
-        <input type="number" name="numero" class="input" value="<?php echo ("$numero")?>">
-        <label for="" class="label">Teléfono</label>
-      </div>
-      <div class="inputContainer">
-        <input type="text" name="intereses" class="input" value="<?php echo ("$intereses")?>">
-        <label for="" class="label">Interéses</label>
-      </div>
-      <div class="inputContainer">
-        <input type="file" name="imagen" class="input" value="<?php echo ("$image")?>">
-        <label for="" class="label">Cambiar foto de perfil</label>
-      </div>
-      <div class="inputContainer">
-      <input class="submitBtn" type="submit" name="editar" value="Guardar Cambios">
+        <input class="submitBtn" type="submit" name="editar" value="Guardar Cambios">
       </div>
       <br>
       <br>
-        
 
-    </form>
-  </div>
+
+  </form>
+
 </body>
 
 
@@ -310,4 +328,5 @@ include("basedatos/validar_sesion.php");
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </footer>
+
 </html>

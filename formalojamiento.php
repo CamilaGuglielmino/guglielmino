@@ -185,10 +185,10 @@ require_once 'basedatos\validar_sesion.php';
   $sql = "SELECT * FROM registrousuario where correo='$email' ";
   $resultado = mysqli_query($conexRapiBnB, $sql);
   while ($row = mysqli_fetch_array($resultado)) {
-
+    $ID= $row["id"];
     $usuario = $row['usuario'];
-    $contraseña = $row['contraseña'];
-    $contraseña2 = $row['contraseña2'];
+    $contraseña = $row['contra'];
+    $contraseña2 = $row['contra2'];
     $Nombre = $row['nombre'];
     $Apellido = $row['apellido'];
     $edad = $row['edad'];
@@ -196,81 +196,31 @@ require_once 'basedatos\validar_sesion.php';
     $intereses = $row['intereses'];
     $image = $row['imagen'];
   }
-  $provError = $ciudadError = $direccionError = $serviciosError = "";
-  $tipo_propiedadError = $costoError = $tiempoMinError = $tiempoMaxError = $cupoError = $tituloError = $descripcionError = "";
 
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $provincia = $_REQUEST['provincia'];
-    $ciudad = trim($_POST['ciudad']);
-    $direccion = trim($_POST['direccion']);
-    $tipo_propiedad = $_REQUEST['tipoPropiedad'];
-    $costo = trim($_POST['costo']);
-    $tiempoMin = trim($_POST['tiempoMin']);
-    $tiempoMax = trim($_POST['tiempoMax']);
-    $cupo = trim($_POST['cupo']);
-    $titulo = trim($_POST['titulo']);
-    $descripcion = trim($_POST['descripcion']);
-
-    if ($provincia == "seleccione") {
-      $provError = "<br>Seleccione una provincia.";
-    }
-
-    if ($ciudad == "") {
-      $ciudadError = "Ingrese una ciudad.";
-    }
-
-    if ($direccion == "") {
-      $direccionError = "Ingrese una direcci&oacuten.";
-    }
-
-    if ($tipo_propiedad === "seleccione") {
-      $tipo_propiedadError = "Seleccione un tipo.";
-    }
-
-    if (isset($_POST['servicios'])) {
-      $servicios = implode(' ', $_POST['servicios']);
-    } else {
-      $serviciosError = "Seleccione al menos un servicio.";
-    }
-
-    if ($costo == "" || $costo < 1) {
-      $costoError = "Ingrese precio";
-    }
-
-    if ($tiempoMin == "" || $tiempoMin < 1) {
-      $tiempoMinError = "Ingrese tiempo m&iacutenimo.";
-    }
-
-    if ($tiempoMax == "" || $tiempoMax < 1) {
-      $tiempoMaxError = "Ingrese tiempo m&aacuteximo.";
-    }
-
-    if ($cupo == "" || $cupo < 1) {
-      $cupoError = "Ingrese cupo.";
-    }
-
-    if ($titulo == "") {
-      $tituloError = "Ingrese t&iacutetulo.";
-    }
-
-    if ($descripcion == "") {
-      $descripcionError = "Ingrese una descripci&oacuten";
-    }
-  }
   ?>
   <div class="signupFrm">
     <form method="POST" enctype="multipart/form-data">
       <h4 style="text-align:left;"> Informaci&oacuten del alojamiento:</h4><br>
       <div class="row">
-        <div class="col-4">
+        <div class="col">
           <h4 style="text-align:left;"> Datos del Propietario:</h4><br>
-          Nombre: <?php echo $Nombre ?><br>
-          Apellido: <?php echo $Apellido ?><br>
+          Usuario: <?php echo $usuario ?><br>
+          Email: <?php echo $email ?><br>
+          
+          Nombre y Apellido: <?php echo $Nombre ?> <?php echo $Apellido ?><br>
+         <p style="align-items: center;"> ____________________________________________________________________________________________________________</p>
+
+        </div>
+      <div>
+      <div class="row">
+      <div class="col-3">
+          <input type="text" class="input" id="ciudad" placeholder="ciudad" name="ciudad">
+          <label for="ciudad" class="label">Ciudad</label>
+
         </div>
         <div class="col-3">
-        <div class="inputContainer">
-          
-        <span class="error">*</span> Provincia:<br>
+        
+        
         <select id="provincia" name="provincia">
           <option value="seleccione">Seleccione...</option>
           <option value="San Luis">San Luis</option>
@@ -295,25 +245,25 @@ require_once 'basedatos\validar_sesion.php';
           <option value="Santiago del Estero">Santiago del Estero</option>
           <option value="Tucuman">Tucum&aacuten</option>
           <option value="Tierra del Fuego">Tierra del Fuego</option>
-        </select></div>
+        </select>
+        <label for="provincia" class="label">Provincia</label>
+        
         </div>
-        <div class="col-5">
-        <div class="inputContainer">
-          <input type="text" class="input" placeholder="" name="ciudad">
-          <label for="" class="label">Ciudad</label>
-        </div>
-        </div>
-        <div class="row"></div>
+       
+        
+      </div>
+
         <div class="row">
-        <div class="col-4"></div>
-        <div class="col-6">
-          <div class="inputContainer">
+         <p style="align-items: center;"> ____________________________________________________________________________________________________________</p>
+        </div>
+        <div class="row-cols-auto">
+        <div class="col-4">
+        <div class="inputContainer">
           <input type="text" class="input" placeholder="" name="direccion">
           <label for="" class="label">Direccion</label>
         </div>
         </div>
-        <div class="col-2">
-        <div class="inputContainer">
+        <div class="col-6">
           <select id="tipoPropiedad" name="tipoPropiedad">
             <option value="seleccione">Seleccione...</option>
             <option value="casa">Casa</option>
@@ -323,15 +273,12 @@ require_once 'basedatos\validar_sesion.php';
           </select>
         </div>
         </div>
+        <div class="row">
+         <p style="align-items: center;"> ____________________________________________________________________________________________________________</p>
         </div>
-        <p style="text-align:left;"><span class="error"> (*) Campos obligatorios</span></p><br>
-        
-        <span class="error"> <?php echo $provError; ?></span><br><br>
-        
-        
-        
-        <div class="inputContainer">
-          <label>Servicios</label>
+
+        <div class="row-cols-auto">
+        <label>Servicios</label>
           <p style="text-align:justify;">
             <input type="checkbox" name="servicios[]" value="wifi"> Wifi
             <input type="checkbox" name="servicios[]" value="cocina"> Cocina
@@ -341,37 +288,46 @@ require_once 'basedatos\validar_sesion.php';
             <input type="checkbox" name="servicios[]" value="calefaccion"> Calefacci&oacuten<br><br>
           </p>
         </div>
+                     
+        <div class="row">
+         <p style="align-items: center;"> ____________________________________________________________________________________________________________</p>
+        </div>
+ 
+        <div class="inputContainer">
+        <input type="number" name="costo" required > <br>
+        </div>
 
-        <span class="error">*</span> Costo por d&iacutea:<br>
-        <input type="number" name="costo"> <br>
-        <span class="error"> <?php echo $costoError; ?></span><br><br>
+        <div class="inputContainer">
+        <input type="number" name="tiempoMin" required> <br>
+        </div>
 
-        <span class="error">*</span> Tiempo m&iacutenimo de permanencia:<br>
-        <input type="number" name="tiempoMin"> <br>
-        <span class="error"> <?php echo $tiempoMinError; ?></span><br><br>
+        <div class="inputContainer">
+        <input type="number" name="tiempoMax" required> <br>
+        </div>
 
-        <span class="error">*</span> Tiempo m&aacuteximo de permanencia:<br>
-        <input type="number" name="tiempoMax"> <br>
-        <span class="error"> <?php echo $tiempoMaxError; ?></span><br><br>
-
-        <span class="error">*</span> Cupo:<br>
-        <input type="number" name="cupo"> <br>
-        <span class="error"> <?php echo $cupoError; ?></span><br><br>
+        <div class="inputContainer">
+        
+        <input type="number" name="cupo" required> <br>
+        </div>
 
         <h4 style="text-align:left;"> Detalles de la oferta:</h4><br>
 
-        <span class="error">*</span> T&iacutetulo:<br>
-        <input type="text" name="titulo"> <br>
-        <span class="error"> <?php echo $tituloError; ?></span><br><br>
-
-        <span class="error">*</span> Descripci&oacuten:<br>
-        <textarea name="descripcion" rows="5" cols="30">
-                </textarea><br>
-        <span class="error"> <?php echo $descripcionError; ?></span><br><br>
-
-        <span class="error">*</span> Fotos:<br>
-        <input type="file" name="imagen" required><br>
-
+        <div class="inputContainer">
+        <input type="text" name="titulo"> 
+        <label> Titulo </label>
+        </div>
+        <div class="inputContainer">
+        <textarea name="descripcion" rows="5" cols="30"> </textarea>
+        <label> Descripcion </label>
+        </div>
+        <div class="row">
+        <input type="file" name="imagen1" required>
+        <input type="file" name="imagen2" required>
+        <input type="file" name="imagen3" required>
+        <input type="file" name="imagen4" >
+        <input type="file" name="imagen5" >
+        <small>Obligatorio 3 imagenes</small>
+        </div>
         <p style="text-align:left;"> Duraci&oacuten activa:</p><br>
 
         Fecha inicio:<br>
@@ -380,9 +336,8 @@ require_once 'basedatos\validar_sesion.php';
         Fecha fin:<br>
         <input type="date" name="finOferta"> <br>
 
+        <input type="submit" class="submitBtn" name="oferta" value="Crear registro">
 
-
-        <input type="submit" name="oferta" value="CREAR OFERTA">
     </form>
 
     <?php

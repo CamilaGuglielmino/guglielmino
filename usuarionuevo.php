@@ -35,7 +35,7 @@ if (isset($_POST['registrarse'])) {
         $contraseña2 = trim($_POST['contra2']);
 
 
-        $consulta = "INSERT INTO registrousuario(ID,correo,usuario,contraseña,contraseña2) VALUES ('$ID','$Email','$usuario','$contra','$contra2')";
+        $consulta = "INSERT INTO registrousuario(ID,correo,usuario,contra,contra2) VALUES ('$ID','$Email','$usuario','$contraseña','$contraseña2')";
         $resultado = mysqli_query($conexRapiBnB, $consulta);
         //session_start();
         // $_SESSION['user'] = $Email;
