@@ -15,8 +15,9 @@ if (isset($_POST['editar'])) {
         $edad = trim($_POST['edad']);
         $numero = trim($_POST['numero']);
         $intereses = trim($_POST['intereses']);
+        $tipo= "regular";
  
-        $sql = "UPDATE registrousuario SET nombre='$Nombre', apellido='$Apellido', edad='$edad', telefono='$numero', intereses = '$intereses' where correo='$email'";
+        $sql = "UPDATE registrousuario SET nombre='$Nombre', apellido='$Apellido', edad='$edad', telefono='$numero', intereses = '$intereses', tipo='$tipo'where correo='$email'";
         $resultado = mysqli_query($conexRapiBnB,$sql);
         if ($resultado) {
             echo"$email";

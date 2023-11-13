@@ -17,27 +17,27 @@ if (isset($_POST['cambiarContraseña'])) {
             session_start();
             $_SESSION["user"] = $email; 
             $mensaje2 = 'Se cambio correctamente su contraseña'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: editarPerfil.php?Message2=" . urlencode($mensaje2));
+            header("Location: editarPerfil.php?Message1=" . urlencode($mensaje2));
            
         } else {
             $mensaje2 = 'No se pudo cambiar su foto de perfil'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: editarPerfil.php?Message2=" . urlencode($mensaje2));
+            header("Location: editarPerfil.php?Message1=" . urlencode($mensaje2));
         }
 }
 if (isset($_POST['verificacion'])) {
 
-    $status = '0777';
+    $tipo = 'En espera';
     
-        $sql = "UPDATE registrousuario SET statu = '$status' where correo='$email'";
+        $sql = "UPDATE registrousuario SET tipo = '$tipo' where correo='$email'";
         $resultado = mysqli_query($conexRapiBnB,$sql);
         
         if ($resultado) {
             
             $mensaje3 = 'Se evaluara su verificación'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: editarPerfil.php?Message3=" . urlencode($mensaje3));
+            header("Location: editarPerfil.php?Message1=" . urlencode($mensaje3));
            
         } else {
             $mensaje2 = 'No se pudo cambiar su foto de perfil'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: editarPerfil.php?Message2=" . urlencode($mensaje2));
+            header("Location: editarPerfil.php?Message1=" . urlencode($mensaje2));
         }
 }

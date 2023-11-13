@@ -29,25 +29,51 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
     Rapibnb
   </title>
 </head>
+
+
+<body>
 <header>
   <nav>
-
     <div class="grid-container">
-      <div class="grid-item" style="text-align: left;">
-
-        <a href="indexx.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
+      <div class="grid-item" style="text-align: left; padding: 20px;">
+        <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
       </div>
       <div class="grid-item" style="text-align: center; padding: 20px;">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <p></p>
-          <a class="nav-link active" aria-current="page" href="#">
-            <button type="button" class="btn btn-outline-danger" style="background-color: #1D2C49; ">
-              Buscar
-            </button></a>
+        <form class="d-flex" role="search" method="GET" action="index.php">
+        
+        <select id="provincia" name="provincia" class="form-select" aria-label="Default select example" style="width: 30%;">
+                <option selected>Provincia</option>
+                <option value="San Luis">San Luis</option>
+                <option value="Buenos Aires">Buenos Aires</option>
+                <option value="Catamarca">Catamarca</option>
+                <option value="Chaco">Chaco</option>
+                <option value="Cordoba">C&oacuterdoba</option>
+                <option value="Corrientes">Corrientes</option>
+                <option value="Entre Rios">Entre R&iacuteos</option>
+                <option value="Formosa">Formosa</option>
+                <option value="Jujuy">Jujuy</option>
+                <option value="La Pampa">La Pampa</option>
+                <option value="La Rioja">La Rioja</option>
+                <option value="Mendoza">Mendoza</option>
+                <option value="Misiones">Misiones</option>
+                <option value="Neuquen">Neuqu&eacuten</option>
+                <option value="Rio Negro">R&iacuteo Negro</option>
+                <option value="Salta">Salta</option>
+                <option value="San Juan">San Juan</option>
+                <option value="Santa Cruz">Santa Cruz</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="Santiago del Estero">Santiago del Estero</option>
+                <option value="Tucuman">Tucum&aacuten</option>
+                <option value="Tierra del Fuego">Tierra del Fuego</option><br>
+        </select> 
+
+          <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato">
+          <input class="form-control me-2" type="search" placeholder="Etiquetas" aria-label="Search" name="etiqueta">
+        
+          <input class="btn btn-primary"  type="submit" name="enviar" value="BUSCAR">
         </form>
       </div>
-      <div class="grid-item" style="text-align: right; padding: 20px; align-content: center;">
+      <div class="grid-item" style="text-align: right; padding: 20px; z-index: 1000;">
         <div class="hamburger">
           <div class="_layer -top"></div>
           <div class="_layer -mid"></div>
@@ -60,8 +86,11 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
             <li><a href="editarPerfil.php">Editar Perfil</a></li>
             <li><a href="formalojamiento.php">Registrar tu alojamiento</a></li>
             <li><a href="logout.php">Cerrar Sesión</a></li>
+            
           </ul>
         </nav>
+      </div>
+    </div>
         <style>
           .hamburger {
             position: fixed;
@@ -74,7 +103,7 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
             transform: translate3d(0, 0, 0);
             -webkit-transition: -webkit-transform 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
             transition: transform 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
-            z-index: 1002;
+            z-index: 1004 !important;
             cursor: pointer;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -187,12 +216,10 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
           // event
           menu.addEventListener('click', toggleMenu, false);
         </script>
-
-      </div>
+  
   </nav>
 </header>
-
-<body>
+<main>
   <?php
   $sql = "SELECT * FROM registroalojamiento where ID='$ID'";
   $resultado = mysqli_query($conexRapiBnB, $sql);
@@ -306,12 +333,15 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
 		</div>
 	</div>
   </div>
-
+<main>
 </body>
 
+
 <footer>
-  <p> - SEGUINOS EN NUESTRAS REDES SOCIALES - </p>
-  <div class="contenedor-icono">
+  <div class="contenedor-footer">
+    <div class="content-foo">
+      <h5> - Nuestras redes Sociales - </h5>
+      <div class="contenedor-icono">
     <div class="container">
       <div class="col">
         <div class="row justify-content-md-center">
@@ -322,7 +352,7 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
               </svg>
             </a>
           </div>
-          <div class="col-md-auto">
+          <div class="col col-lg-2"">
             <a href="https://www.facebook.com" TARGET="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-facebook" viewBox="0 0 20 20" color=#000>
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
@@ -339,14 +369,14 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
         </div>
       </div>
     </div>
+      </div>
+    </div>
   </div>
-
-  © Camila Guglielmino - 2023
-
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
+  <h6 class="titulo-final">&copy; Programación III | Camila Guglielmino | 2023</h6>
+  
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
 
 </html>

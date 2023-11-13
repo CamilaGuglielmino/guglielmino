@@ -4,30 +4,39 @@ require_once '../basedatos/validar_sesion.php';
 $email = $_SESSION['user'];
 if (isset($_GET['Message'])) {
   print '<script type="text/javascript">alert("' . $_GET['Message'] . '");</script>';
+  
 }
 
 ?>
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../externo/estilos.css" type="text/css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-  <title>
-    Rapibnb
-  </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../externo/estilos.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>
+        Rapibnb
+    </title>
 </head>
-
-<body>
 <header>
   <nav>
     <div class="grid-container">
-      <div class="grid-item" style="text-align: left; padding: 20px;">
-        <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
+      <div class="grid-item" style="text-align: left;">
+
+        <a href="indexadm.php"> <img alt="logo" src="../img/logo1.png" style="width: 7em; "></a>
       </div>
-      <div class="grid-item" style="text-align: right; padding: 20px; z-index: 1000;">
+      <div class="grid-item" style="text-align: center; padding: 20px;">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <p></p>
+          <a class="nav-link active" aria-current="page" href="#">
+            <button type="button" class="btn btn-outline-danger" style="background-color: #1D2C49; ">
+              Buscar
+            </button></a>
+        </form>
+      </div>
+      <div class="grid-item" style="text-align: right; padding: 20px; align-content: center;">
         <div class="hamburger">
           <div class="_layer -top"></div>
           <div class="_layer -mid"></div>
@@ -35,16 +44,13 @@ if (isset($_GET['Message'])) {
         </div>
         <nav class="menuppal">
           <ul>
-          <li><a href="#">Bienvenido <?php echo $_SESSION['user'] ?></a></li>
+            <li><a href="#">Bienvenido <?php echo $_SESSION['user'] ?></a></li>
             <li><a href="listausuarios.php">Lista Usuarios</a></li>
             <li><a href="listadealojamientos.php">Lista Alojamientos</a></li>
             <li><a href="listareservas.php">Lista Reservas</a></li>
             <li><a href="../logout.php">Cerrar Sesión</a></li>
-            
           </ul>
         </nav>
-      </div>
-    </div>
         <style>
           .hamburger {
             position: fixed;
@@ -57,7 +63,7 @@ if (isset($_GET['Message'])) {
             transform: translate3d(0, 0, 0);
             -webkit-transition: -webkit-transform 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
             transition: transform 0.25s cubic-bezier(0.05, 1.04, 0.72, 0.98);
-            z-index: 1004 !important;
+            z-index: 1002;
             cursor: pointer;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -170,23 +176,102 @@ if (isset($_GET['Message'])) {
           // event
           menu.addEventListener('click', toggleMenu, false);
         </script>
-  
+
+      </div>
   </nav>
 </header>
-<main>
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class=""><a href="admin.php">ADMINISTRADOR DEL SITIO</a></li>
+                    </ul>
+                    <form action="#" class="navbar-search form-inline" style="margin-top:6px">
+
+                    </form>
+                    <ul class="nav pull-right">
+                       
+                        
+                    </ul>
+                </div><!-- /.nav-collapse -->
+            </div>
+        </div><!-- /navbar-inner -->
+    </div>
+    <div class="row">
+                <h2> Administración de usuarios registrados</h2>
+                    <h4>Tabla de Usuarios</h4>
+                    <div class="row-fluid">
+
+                        <?php
+
+                        require('../basedatos/conexion.php');
+                        $sql = ("SELECT * FROM registrousuario");
+
+                        $query = mysqli_query($conexRapiBnB, $sql);
+
+                        echo "<table border='1'; class='table table-hover';>";
+                        echo "<tr class='warning'>";
+                        echo "<td>Tipo de Usuario</td>";
+                        echo "<td>ID</td>";
+                        echo "<td>correo</td>";
+                        echo "<td>usuario</td>";
+                        echo "<td>contraseña</td>";
+                        echo "<td>Validar</td>";
+
+                    
+                        echo "</tr>";
+
+                        ?>
+
+                        <?php
+                        while ($arreglo = mysqli_fetch_array($query)) {
+                            echo "<tr class='success'>"; ?>
+                            <td> <?php echo $arreglo['tipo']  ?></td>;
+                            <td> <?php echo $arreglo['id']  ?></td>;
+                            <td> <?php echo $arreglo['correo']  ?></td>;
+                            <td> <?php echo $arreglo['usuario']  ?></td>;
+                            <td> <?php echo $arreglo['contra']  ?></td>;
+                            <td> <?php
+                            $ID=$arreglo['id'] ;
+                           
+                            
+                             if($arreglo['tipo']=='En espera'){ ?>
+                             <form method="POST" action="validar.php?ID=<?php echo $ID;?>">
+                                <input type="submit" value="validar" name="validar">
+                                <input type="submit" value="rechazarr" name="rechazar">
+                             </form>
+
+                            <?php
+                             }
+                            ?></td>;
 
 
-    
+<?php
+                            echo "</tr>";
+                        }
+
+                        echo "</table>";
 
 
-  <p style="align-content: center;">
-    ADMINISTRADOR DEL SITIO
-  </p>
-  <?php 
-      include("mensaje.php");
+                        ?>
 
-  ?>
+                        <div class="span8">
+
+                        </div>
+                    </div>
+                    <br />
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
   
+ 
+
 </body>
 
 </html>

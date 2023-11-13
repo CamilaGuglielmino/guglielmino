@@ -14,6 +14,10 @@ if (isset($_POST['perfil'])) {
         $ruta = $ruta."/".$nombreimg;
         move_uploaded_file($archivo,$ruta);
         $imagen = $ruta;
+        if($nombreimg == '') {
+            $imagen = 'img_perfil/R.jpeg';
+
+        }
        
         $sql = "UPDATE registrousuario SET imagen = '$imagen' where correo='$email'";
         $resultado = mysqli_query($conexRapiBnB,$sql);

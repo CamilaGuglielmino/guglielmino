@@ -1,65 +1,5 @@
-.signupFrm {
-  display: block;
-  align-items: center !important;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-}
-
-.form {
-  display: block;
-  width: 100%;
-  align-items: center !important;
- 
-}
-
-.title {
-  margin-bottom: 10px;
-}
-
-.inputContainer {
-  z-index: 10;
-  height: 45px;
-  width: 100%;
-  margin-bottom: 27px;
-}
-
-.input {
-  position: relative;
-  left: 480;
-  height: 40px;
-  width: 300px !important;
-  border: 2px solid #1D2C49;
-  border-radius: 10px;
-  font-size: 16px;
-  padding: 0 60px;
-  outline: none;
-  background: none;
-  z-index: 1;
-}
-
-/* Hide the placeholder texts (a) */
-
 ::placeholder {
-  color: transparent;
-}
-
-.col-6 {
-  position: static !important;
-
-}
-
-.label {
-  position: relative;
-  top: 15px;
-  left: 15px;
-  padding: 0 4px;
-  background-color: white;
-  color: #1D2C49;
-  font-size: 16px;
-  transition: 0.5s;
-  z-index: 0;
+  color: grey;
 }
 
 .submitBtn {
@@ -78,41 +18,6 @@
 }
 
 .submitBtn:hover {
-  background-color: #e48200;
+  background-color: rgb(145, 97, 191);
   transform: translateY(-2px);
-}
-
-.input:focus+.label {
-  top: -7px;
-  left: 3px;
-  z-index: 10;
-  font-size: 18px;
-  font-weight: 600;
-  color: #e48200;
-}
-
-.input:focus {
-  border: 2px solid #e48200;
-}
-
-.input:not(:placeholder-shown)+.label {
-  top: -7px;
-  left: 3px;
-  z-index: 10;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-
-
-}
-
-.form-signin .checkbox {
-  font-weight: 400;
-
 }

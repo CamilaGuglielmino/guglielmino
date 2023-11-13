@@ -1,4 +1,7 @@
 <html>
+  <?php
+  include("basedatos/conexion.php");
+  ?>
 
 <head>
   <meta charset="utf-8">
@@ -13,23 +16,49 @@
   </title>
 </head>
 
+<body>
 <header>
   <nav>
     <div class="grid-container">
-      <div class="grid-item" style="text-align: left !important;">
+      <div class="grid-item" style="text-align: left; padding: 20px;">
         <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
       </div>
       <div class="grid-item" style="text-align: center; padding: 20px;">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" name="busqueda" type="search" placeholder="Search" aria-label="Search">
-          <p></p>
-          <a class="nav-link active" aria-current="page" href="#">
-            <button type="button" name="enviar" class="btn btn-outline-danger" style="background-color: #1D2C49; ">
-              Buscar
-            </button></a>
+        <form class="d-flex" role="search" method="GET" action="index.php">
+        
+        <select id="provincia" name="provincia" class="form-select" aria-label="Default select example" style="width: 30%;">
+                <option selected>Provincia</option>
+                <option value="San Luis">San Luis</option>
+                <option value="Buenos Aires">Buenos Aires</option>
+                <option value="Catamarca">Catamarca</option>
+                <option value="Chaco">Chaco</option>
+                <option value="Cordoba">C&oacuterdoba</option>
+                <option value="Corrientes">Corrientes</option>
+                <option value="Entre Rios">Entre R&iacuteos</option>
+                <option value="Formosa">Formosa</option>
+                <option value="Jujuy">Jujuy</option>
+                <option value="La Pampa">La Pampa</option>
+                <option value="La Rioja">La Rioja</option>
+                <option value="Mendoza">Mendoza</option>
+                <option value="Misiones">Misiones</option>
+                <option value="Neuquen">Neuqu&eacuten</option>
+                <option value="Rio Negro">R&iacuteo Negro</option>
+                <option value="Salta">Salta</option>
+                <option value="San Juan">San Juan</option>
+                <option value="Santa Cruz">Santa Cruz</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="Santiago del Estero">Santiago del Estero</option>
+                <option value="Tucuman">Tucum&aacuten</option>
+                <option value="Tierra del Fuego">Tierra del Fuego</option><br>
+        </select> 
+
+          <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato">
+          <input class="form-control me-2" type="search" placeholder="Etiquetas" aria-label="Search" name="etiqueta">
+        
+          <input class="btn-bottom"  type="submit" name="enviar" value="Buscar">
         </form>
       </div>
-      <div class="grid-item" style="text-align: right !important;  z-index: 1000;">
+      <div class="grid-item" style="text-align: right; padding: 20px; z-index: 1000;">
         <div class="hamburger">
           <div class="_layer -top"></div>
           <div class="_layer -mid"></div>
@@ -170,27 +199,45 @@
           // event
           menu.addEventListener('click', toggleMenu, false);
         </script>
-
-      
+  
   </nav>
 </header>
+<main>
+  <section class="contenedor">
+    <br>
+  <h2 class="titulo"> Últimos alojamientos </h2>
 
-<body>
-  <br>
-  <h2 style=" text-align:center;"> Últimos alojamientos </h2>
+  </section>
+  <section class="contendor-body">
+  <?php
+    if(isset($_GET['enviar'])){
+        $busqueda = $_GET['dato'];
+        $provincia = $_REQUEST['provincia'];
+        $etiqueta= $_REQUEST['etiqueta'];
+        $consul="SELECT * FROM registroalojamiento WHERE Provincia like '%$provincia%' or titulo like '%$busqueda%' or etiqueta like '%$etiqueta%'";
+        $consulta = mysqli_query($conexRapiBnB,$consul);
+
+        while ($record = mysqli_fetch_assoc($consulta)) {
+            ?>
   <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">
   
     <?php
     include("mostrar/mostrar-tarjeta.php");
     ?>
   </div>
-  
-
+  <?php
+        }
+      }
+        ?>
+  </section>
+</main>
 </body>
 
 <footer>
-  <p> - Nuestras redes Sociales - </p>
-  <div class="contenedor-icono">
+  <div class="contenedor-footer">
+    <div class="content-foo">
+      <h5> - Nuestras redes Sociales - </h5>
+      <div class="contenedor-icono">
     <div class="container">
       <div class="col">
         <div class="row justify-content-md-center">
@@ -201,7 +248,7 @@
               </svg>
             </a>
           </div>
-          <div class="col-md-auto">
+          <div class="col col-lg-2"">
             <a href="https://www.facebook.com" TARGET="_blank">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-facebook" viewBox="0 0 20 20" color=#000>
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
@@ -218,13 +265,13 @@
         </div>
       </div>
     </div>
+      </div>
+    </div>
   </div>
-
-  © Camila Guglielmino - 2023
-
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <h6 class="titulo-final">&copy; Programación III | Camila Guglielmino | 2023</h6>
+  
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 </html>
