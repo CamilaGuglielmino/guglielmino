@@ -13,18 +13,7 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="sss/sss.css">
-	<link rel="stylesheet" href="slider.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script src="sss/sss.js"></script>
-	<script>
-	    jQuery(function($){
-	        $('.slider-testimonial').sss({
-	        	slideShow : true,
-	        	speed : 3500
-	        });
-	    });
-	</script>
+  
   <title>
     Rapibnb
   </title>
@@ -70,7 +59,8 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
           <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato">
           <input class="form-control me-2" type="search" placeholder="Etiquetas" aria-label="Search" name="etiqueta">
         
-          <input class="btn btn-primary"  type="submit" name="enviar" value="BUSCAR">
+          <input class="btn-bottom"  type="submit" name="enviar" value="Buscar">
+
         </form>
       </div>
       <div class="grid-item" style="text-align: right; padding: 20px; z-index: 1000;">
@@ -81,11 +71,9 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
         </div>
         <nav class="menuppal">
           <ul>
-            <li><a href="#">Bienvenido <?php echo $_SESSION['user'] ?></a></li>
-            <li><a href="cuenta.php">Mi cuenta</a></li>
-            <li><a href="editarPerfil.php">Editar Perfil</a></li>
+            <li><a href="iniciarsesion.php">Iniciar Sesión</a></li>
+            <li><a href="registrarse.php">Registrarse</a></li>
             <li><a href="formalojamiento.php">Registrar tu alojamiento</a></li>
-            <li><a href="logout.php">Cerrar Sesión</a></li>
             
           </ul>
         </nav>
@@ -280,58 +268,15 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
       
       
       ?>
-      <div class="row-cols-auto">
-        <div class="card text-center">
-          <form method="get" action="mostrar/tarjeta_reserva.php" >
-          <div class="card-header">
-            Reserva
-            <input type="text" name="idusuario" value="<?php echo $idu;?>">
-            <input type="text" name="idalojamiento" value="<?php echo $ida;?>">
-            
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $record['titulo']; ?></h5>
-            <p class="card-text">
-              Fecha inicio: <input type="date" name="date"> 
-
-              Fecha fin: <input type="date" name="date1">
-            </p>
-            <input type="submit" class="submitBtn" name="registro" value="registro">
-          </div>
-          </form>
+      <div class="contenedor">
+        <h2 class="titulo"> <a href="iniciarsesion.php">Inicia Sesión </a> o <a href="registrarse.php">Regístrate para poder reservar </a><h2>      
         </div>
       </div>
   <?php
     }
   }
- 
-  $sqli = "SELECT * FROM registroreserva WHERE idalojamiento = '$ID'";
-  $resultado = mysqli_query($conexRapiBnB, $sqli);
- 
-
-  ?>
-  <div class="wrapper">
-		<div class="slider-testimonial">
-			<div class="testimonial-item">
-				<?php
-      while ($row = mysqli_fetch_assoc($resultado)) {
-        $idusuario= $row['idusuario'];
-        $sq = "SELECT * FROM registrousuario WHERE id == '$idusuario'";
-        $result = mysqli_query($conexRapiBnB, $sqli);
-        while  ($row2 = mysqli_fetch_assoc($resulto)){ ?>
-          <div class="testimonial-client">
-          <img src="<?php echo $row2['imagen']?>" alt="">
-					<p class="client-name"><?php echo $row2['nombre']?> <?php echo $row2['apellido']?></p>
-          <div class="testimonial-text">
-					<p><?php echo $row['comentario']?></p>
-				  </div>
-          </div><?php
-
-        }
-    
-      }
-    }
-      
+}
+  
   ?>
 		</div>
 	</div>

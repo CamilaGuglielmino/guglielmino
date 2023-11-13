@@ -13,8 +13,7 @@ while($row = mysqli_fetch_array($resultado) ){
     }else{
         $cant2= '0';
     }
-}
-    
+   
     if($cant1=='1') {
     ?>
         <div class="card mb-3" style="max-width: 540px; align-content: center;">
@@ -39,6 +38,7 @@ while($row = mysqli_fetch_array($resultado) ){
         </div>
     <?php
     }
+}
 
     $sql1 = "SELECT * FROM registroalojamiento";
 
@@ -47,12 +47,12 @@ while($row = mysqli_fetch_array($resultado) ){
     while($row1 = mysqli_fetch_array($resultado1) ){
         $cant3= '0';
         
-        if ($row1['status'] == 'En espera') {
+        if ($row1['statu'] == 'En espera') {
            $cant3= '1';
         }else{
             $cant4= '0';
         }
-    }
+    
         
         if($cant3=='1') {
         ?>
@@ -78,5 +78,6 @@ while($row = mysqli_fetch_array($resultado) ){
             </div>
         <?php
         }
+    }
     
     ?>

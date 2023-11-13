@@ -19,6 +19,7 @@ if (isset($_GET['Message'])) {
         Rapibnb
     </title>
 </head>
+<body>
 <header>
   <nav>
     <div class="grid-container">
@@ -180,3 +181,82 @@ if (isset($_GET['Message'])) {
       </div>
   </nav>
 </header>
+<main>
+<div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class=""><a href="indexadm.php">ADMINISTRADOR DEL SITIO</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h2 class="titulo"> Administración de alojamientos registrados</h2>
+    <h4 class="titulo">Tabla de AlojamientosUsuarios</h4>
+    <div class="row-fluid">
+      <?php
+
+      require('../basedatos/conexion.php');
+      $sql = ("SELECT * FROM registroreserva");
+
+      $query = mysqli_query($conexRapiBnB, $sql);
+
+      echo "<table border='1'; class='table table-hover';>";
+     
+      echo "<td>ID-Alojamiento</td>";
+      echo "<td>ID-usuario</td>";
+      echo "<td>Fecha-Inicio</td>";
+      echo "<td>Fecha-Fin</td>";
+      echo "<td>Reseña</td>";
+
+
+      echo "</tr>";
+
+      ?>
+
+      <?php
+      while ($arreglo = mysqli_fetch_array($query)) {
+      ?>
+        
+        <td> <?php echo $arreglo['idalojamiento']  ?></td>
+        <td> <?php echo $arreglo['idusuario']  ?></td>
+        <td> <?php echo $arreglo['fechainicio']  ?> </td>
+        <td> <?php echo $arreglo['fechafin']  ?></td>
+        <td> <?php echo $arreglo['comentario']  ?></td>
+
+
+        <td> <?php
+              
+              if ($arreglo['comentario'] == '') { ?>
+            <form method="POST" action="validar.php?ID=<?php echo $ID; ?>">
+              <input type="submit" value="activar" name="activar">
+              <input type="submit" value="rechazar" name="rechazar">
+            </form>
+
+          <?php
+              }
+          ?>
+        </td>
+
+
+      <?php
+        echo "</tr>";
+      }
+
+      echo "</table>";
+
+
+      ?>
+
+     
+
+    </div>
+   
+  </div>
+
+</main>
+</body>

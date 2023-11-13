@@ -23,9 +23,46 @@ if (isset($_GET['Message'])) {
 <body>
 <header>
   <nav>
+  <header>
+  <nav>
     <div class="grid-container">
       <div class="grid-item" style="text-align: left; padding: 20px;">
-        <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
+        <a href="indexadm.php"> <img alt="logo" src="../img/logo1.png" style="width: 7em; "></a>
+      </div>
+      <div class="grid-item" style="text-align: center; padding: 20px;">
+        <form class="d-flex" role="search" method="GET" action="index.php">
+        
+        <select id="provincia" name="provincia" class="form-select" aria-label="Default select example" style="width: 30%;">
+                <option selected>Provincia</option>
+                <option value="San Luis">San Luis</option>
+                <option value="Buenos Aires">Buenos Aires</option>
+                <option value="Catamarca">Catamarca</option>
+                <option value="Chaco">Chaco</option>
+                <option value="Cordoba">C&oacuterdoba</option>
+                <option value="Corrientes">Corrientes</option>
+                <option value="Entre Rios">Entre R&iacuteos</option>
+                <option value="Formosa">Formosa</option>
+                <option value="Jujuy">Jujuy</option>
+                <option value="La Pampa">La Pampa</option>
+                <option value="La Rioja">La Rioja</option>
+                <option value="Mendoza">Mendoza</option>
+                <option value="Misiones">Misiones</option>
+                <option value="Neuquen">Neuqu&eacuten</option>
+                <option value="Rio Negro">R&iacuteo Negro</option>
+                <option value="Salta">Salta</option>
+                <option value="San Juan">San Juan</option>
+                <option value="Santa Cruz">Santa Cruz</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="Santiago del Estero">Santiago del Estero</option>
+                <option value="Tucuman">Tucum&aacuten</option>
+                <option value="Tierra del Fuego">Tierra del Fuego</option><br>
+        </select> 
+
+          <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato">
+          <input class="form-control me-2" type="search" placeholder="Etiquetas" aria-label="Search" name="etiqueta">
+        
+          <input class="btn btn-primary"  type="submit" name="enviar" value="BUSCAR">
+        </form>
       </div>
       <div class="grid-item" style="text-align: right; padding: 20px; z-index: 1000;">
         <div class="hamburger">
@@ -178,14 +215,15 @@ if (isset($_GET['Message'])) {
 
     
 
-
-  <p style="align-content: center;">
+<div class="contenedor">
+  <p class="titulo">
     ADMINISTRADOR DEL SITIO
   </p>
   <?php 
       include("mensaje.php");
 
   ?>
+  </div>
   
 </body>
 

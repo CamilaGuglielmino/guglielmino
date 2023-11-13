@@ -1,11 +1,10 @@
 <html>
-  <?php
-  include("basedatos/conexion.php");
+  <?php 
+  require_once("basedatos/conexion.php")
   ?>
-
+  
 <head>
   <meta charset="utf-8">
- 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="externo/estilos.css" type="text/css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -24,9 +23,9 @@
         <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
       </div>
       <div class="grid-item" style="text-align: center; padding: 20px;">
-        <form class="d-flex" role="search" method="GET" action="index.php">
+        <form class="d-flex" role="search" method="GET" action="buscador.php">
         
-        <select id="provincia" name="provincia" class="form-select" aria-label="Default select example" style="width: 30%;">
+        <select id="provincia" name="busqueda" class="form-select" aria-label="Default select example" style="width: 30%;">
                 <option selected>Provincia</option>
                 <option value="San Luis">San Luis</option>
                 <option value="Buenos Aires">Buenos Aires</option>
@@ -68,7 +67,7 @@
           <ul>
             <li><a href="iniciarsesion.php">Iniciar Sesión</a></li>
             <li><a href="registrarse.php">Registrarse</a></li>
-            <li><a href="formalojamiento.php">Registrar tu alojamiento</a></li>
+            <li><a href="iniciarsesion.php">Registrar tu alojamiento</a></li>
             
           </ul>
         </nav>
@@ -213,21 +212,11 @@
   <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">
   
     <?php
-    include("mostrar/mostrar-tarjeta.php");
+    include("mostrar/mostrar-tarjeta2.php");
     ?>
   </div>
   <?php
-    if(isset($_GET['enviar'])){
-        $busqueda = $_GET['dato'];
-        $provincia = $_REQUEST['provincia'];
-        $etiqueta= $_REQUEST['etiqueta'];
-        $consul="SELECT * FROM registroalojamiento WHERE Provincia like '%$provincia%' or titulo like '%$busqueda%' or etiqueta like '%$etiqueta%'";
-        $consulta = mysqli_query($conexRapiBnB,$consul);
-
-        while ($record = mysqli_fetch_assoc($consulta)) {
-          
-        }
-      }
+    
   ?>
   </section>
 </main>

@@ -15,7 +15,7 @@ if (isset($_POST['editar'])) {
         $edad = trim($_POST['edad']);
         $numero = trim($_POST['numero']);
         $intereses = trim($_POST['intereses']);
-        $tipo= "regular";
+        $tipo= "Regular";
  
         $sql = "UPDATE registrousuario SET nombre='$Nombre', apellido='$Apellido', edad='$edad', telefono='$numero', intereses = '$intereses', tipo='$tipo'where correo='$email'";
         $resultado = mysqli_query($conexRapiBnB,$sql);
@@ -23,7 +23,7 @@ if (isset($_POST['editar'])) {
             echo"$email";
             session_start();
             $_SESSION["user"] = $email;
-            $_SESSION["user"] = $email; 
+            
             $mensaje4 = 'Se guardaron los cambios correctamente'; // se guarda en mensaje el texto que quieras mostrar
             header("Location: editarPerfil.php?Message4=" . urlencode($mensaje4));
         } else {

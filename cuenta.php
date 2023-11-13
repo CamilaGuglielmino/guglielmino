@@ -22,7 +22,7 @@ require_once 'basedatos\validar_sesion.php';
   <nav>
     <div class="grid-container">
       <div class="grid-item" style="text-align: left; padding: 20px;">
-        <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
+        <a href="indexx.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
       </div>
       <div class="grid-item" style="text-align: center; padding: 20px;">
         <form class="d-flex" role="search" method="GET" action="index.php">
@@ -223,6 +223,7 @@ require_once 'basedatos\validar_sesion.php';
         $numero = $row['telefono'];
         $intereses = $row['intereses'];
         $image = $row['imagen'];
+        $tipo= $row['tipo'];
     } ?>
    <nav class="navbar navbar-expand-lg bg-light" >
   <div class="container-fluid">
@@ -235,29 +236,29 @@ require_once 'basedatos\validar_sesion.php';
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="editarPerfil.php">Editar Perfil</a>
         </li>
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Historial </a> 
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="historial.php?variable=1">Mis Alojamientos</a></li>
-            <li><a class="dropdown-item" href="historial.php?variable=2">Mis Reservas</a></li>
-          </ul>
-        
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="historial.php?variable=1">Mis Alojamientos</a>
         </li>
-          
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="historial.php?variable=2">Mis Reservas</a></li>
+        </li>
         
       </ul>
       
     </div>
   </div>
 </nav>
+<br>
+<br>
+<br>
+
+<div class="container">
 
 <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
       <img src=" <?php echo $image?>" class="img-fluid rounded-start" alt="...">
-    </div>
+    </div> 
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title"><?php echo $Nombre?> <?php echo $Apellido?></h5>
@@ -266,6 +267,7 @@ require_once 'basedatos\validar_sesion.php';
       </div>
     </div>
   </div>
+</div>
 </div>
   </main>
 </body>

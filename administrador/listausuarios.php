@@ -186,7 +186,7 @@ if (isset($_GET['Message'])) {
             <div class="container">
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class=""><a href="admin.php">ADMINISTRADOR DEL SITIO</a></li>
+                        <li class=""><a href="indexadm.php">ADMINISTRADOR DEL SITIO</a></li>
                     </ul>
                     <form action="#" class="navbar-search form-inline" style="margin-top:6px">
 
@@ -195,13 +195,14 @@ if (isset($_GET['Message'])) {
                        
                         
                     </ul>
-                </div><!-- /.nav-collapse -->
+                </div>
             </div>
-        </div><!-- /navbar-inner -->
+        </div>
     </div>
     <div class="row">
-                <h2> Administración de usuarios registrados</h2>
-                    <h4>Tabla de Usuarios</h4>
+                <h2 class="titulo"> Administración de usuarios registrados</h2>
+                    <h4 class="titulo">Tabla de Usuarios</h4>
+
                     <div class="row-fluid">
 
                         <?php
@@ -211,7 +212,7 @@ if (isset($_GET['Message'])) {
 
                         $query = mysqli_query($conexRapiBnB, $sql);
 
-                        echo "<table border='1'; class='table table-hover';>";
+                        echo "<table border='1' class='table table-hover'>";
                         echo "<tr class='warning'>";
                         echo "<td>Tipo de Usuario</td>";
                         echo "<td>ID</td>";
@@ -227,12 +228,12 @@ if (isset($_GET['Message'])) {
 
                         <?php
                         while ($arreglo = mysqli_fetch_array($query)) {
-                            echo "<tr class='success'>"; ?>
-                            <td> <?php echo $arreglo['tipo']  ?></td>;
-                            <td> <?php echo $arreglo['id']  ?></td>;
-                            <td> <?php echo $arreglo['correo']  ?></td>;
-                            <td> <?php echo $arreglo['usuario']  ?></td>;
-                            <td> <?php echo $arreglo['contra']  ?></td>;
+                            ?>
+                            <td> <?php echo $arreglo['tipo']  ?></td>
+                            <td> <?php echo $arreglo['id']  ?></td>
+                            <td> <?php echo $arreglo['correo']  ?></td>
+                            <td> <?php echo $arreglo['usuario']  ?></td>
+                            <td> <?php echo $arreglo['contra']  ?></td>
                             <td> <?php
                             $ID=$arreglo['id'] ;
                            
@@ -245,7 +246,7 @@ if (isset($_GET['Message'])) {
 
                             <?php
                              }
-                            ?></td>;
+                            ?></td>
 
 
 <?php

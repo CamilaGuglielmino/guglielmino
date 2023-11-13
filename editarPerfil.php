@@ -1,7 +1,7 @@
 <?php
 include("basedatos/conexion.php");
 include("usuarionuevo.php");
-include("basedatos/BDusuarios.php");
+include("BDalojamiento.php");
 include("basedatos/validar_sesion.php");
 //session_start ();
 if (isset($_GET['Message1'])) {
@@ -55,7 +55,7 @@ while ($row = mysqli_fetch_array($resultado)) {
   <nav>
     <div class="grid-container">
       <div class="grid-item" style="text-align: left; padding: 20px;">
-        <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
+        <a href="indexx.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
       </div>
       <div class="grid-item" style="text-align: center; padding: 20px;">
         <form class="d-flex" role="search" method="GET" action="index.php">
@@ -271,7 +271,7 @@ while ($row = mysqli_fetch_array($resultado)) {
           </div>
           <input type="submit" name="cambiarContraseña" value="Cambiar Contraseña">
           <?php 
-          if($tipo == "regular"){
+          if($tipo == "Regular"){
 
           ?>
           <input type="submit" name="verificacion" value="Solicitar verificacion" >

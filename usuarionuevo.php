@@ -9,8 +9,9 @@ if (isset($_POST['registrarse'])) {
         $usuario = trim($_POST['usuario']);
         $contraseña = trim($_POST['contra']);
         $contraseña2 = trim($_POST['contra2']);
+        $tipo="Regular";
         
-        $consulta = "INSERT INTO registrousuario(ID,correo,usuario,contra,contra2) VALUES ('$ID','$Email','$usuario','$contraseña','$contraseña2')";
+        $consulta = "INSERT INTO registrousuario(ID,correo,usuario,contra,contra2, tipo) VALUES ('$ID','$Email','$usuario','$contraseña','$contraseña2', '$tipo')";
         $resultado = mysqli_query($conexRapiBnB, $consulta);
         //session_start();
         // $_SESSION['user'] = $Email;

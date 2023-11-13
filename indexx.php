@@ -1,8 +1,8 @@
 <?php
     include 'basedatos\validar_sesion.php';
     
-if (isset($_GET['Message'])) {
-print '<script type="text/javascript">alert("' . $_GET['Message'] . '");</script>';
+if (isset($_GET['Message4'])) {
+print '<script type="text/javascript">alert("' . $_GET['Message4'] . '");</script>';
 
          }
 ?>

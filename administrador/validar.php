@@ -34,18 +34,16 @@ if (isset($_POST['rechazar'])) {
     }
 }
 if (isset($_POST['activar'])) {
-
-
-    $tipo = 'activo';
-    $sql = "UPDATE registroalojamiento SET  tipo= '$tipo' WHERE ID = $ID " ;
+    $estado= 'activo';
+    $sql = "UPDATE registroalojamiento SET  statu= '$estado' WHERE ID = $ID " ;
     $resultado = mysqli_query($conexRapiBnB,$sql);
     if ($resultado) {
        
         $mensaje = 'Se guardaron los cambios correctamente'; // se guarda en mensaje el texto que quieras mostrar
-        header("Location: listausuarios.php?Message=" . urlencode($mensaje));
+        header("Location: listadealojamientos.php?Message=" . urlencode($mensaje));
     } else {
         $mensaje = 'No se puede realizar los cambios en estos momentos'; // se guarda en mensaje el texto que quieras mostrar
-        header("Location: listausuarios.php?Message=" . urlencode($mensaje));
+        header("Location: listadealojamientos.php?Message=" . urlencode($mensaje));
     }
 
 }
@@ -56,10 +54,10 @@ if (isset($_POST['rechazarr'])) {
     if ($resultado) {
        
         $mensaje = 'Se elimino la publicación'; // se guarda en mensaje el texto que quieras mostrar
-        header("Location: listausuarios.php?Message=" . urlencode($mensaje4));
+        header("Location: listadealojamientos.php?Message=" . urlencode($mensaje4));
     } else {
         $mensaje = 'No se pudo eliminar'; // se guarda en mensaje el texto que quieras mostrar
-        header("Location: listausuarios.php?Message=" . urlencode($mensaje4));
+        header("Location: listadealojamientos.php?Message=" . urlencode($mensaje4));
     }
 }
 ?>

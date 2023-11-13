@@ -55,7 +55,7 @@
                         <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato">
                         <input class="form-control me-2" type="search" placeholder="Etiquetas" aria-label="Search" name="etiqueta">
 
-                        <input class="btn btn-primary" type="submit" name="enviar" value="BUSCAR">
+                        <input class="btn-bottom"  type="submit" name="enviar" value="Buscar">
                     </form>
                 </div>
                 <div class="grid-item" style="text-align: right; padding: 20px; z-index: 1000;">
@@ -68,7 +68,8 @@
                         <ul>
                             <li><a href="iniciarsesion.php">Iniciar Sesión</a></li>
                             <li><a href="registrarse.php">Registrarse</a></li>
-                            <li><a href="formalojamiento.php">Registrar tu alojamiento</a></li>
+                            <li><a href="iniciarsesion.php">Registrar tu alojamiento</a></li>
+
 
                         </ul>
                     </nav>

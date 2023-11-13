@@ -187,16 +187,16 @@ if (isset($_GET['Message'])) {
       <div class="container">
         <div class="nav-collapse">
           <ul class="nav">
-            <li class=""><a href="admin.php">ADMINISTRADOR DEL SITIO</a></li>
+            <li class=""><a href="indexadm.php">ADMINISTRADOR DEL SITIO</a></li>
           </ul>
-          
+
         </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <h2> Administración de usuarios registrados</h2>
-    <h4>Tabla de Usuarios</h4>
+    <h2 class="titulo"> Administración de alojamientos registrados</h2>
+    <h4 class="titulo">Tabla de AlojamientosUsuarios</h4>
     <div class="row-fluid">
       <?php
 
@@ -221,26 +221,26 @@ if (isset($_GET['Message'])) {
 
       <?php
       while ($arreglo = mysqli_fetch_array($query)) {
-        ?>
-        <td> <?php echo $arreglo['status']  ?></td>;
-        <td> <?php echo $arreglo['ID']  ?></td>;
-        <td> <?php echo $arreglo['titulo']  ?></td>;
-        <td> <?php echo $arreglo['ciudad']  ?> <br> <?php echo $arreglo['Provincia']  ?></td>;
-        <td> <?php echo $arreglo['descripcion']  ?></td>;
+      ?>
+        <td> <?php echo $arreglo['statu']  ?></td>
+        <td> <?php echo $arreglo['ID']  ?></td>
+        <td> <?php echo $arreglo['titulo']  ?></td>
+        <td> <?php echo $arreglo['ciudad']  ?> <br> <?php echo $arreglo['Provincia']  ?></td>
+        <td> <?php echo $arreglo['descripcion']  ?></td>
         <td> <?php
-        $ID= $arreglo['ID'];
-             
+              $ID = $arreglo['ID'];
 
-              if ($arreglo['status'] == 'En espera') { ?>
+
+              if ($arreglo['statu'] == 'En espera') { ?>
             <form method="POST" action="validar.php?ID=<?php echo $ID; ?>">
               <input type="submit" value="activar" name="activar">
-              <input type="submit" value="rechazar" name="rechazar">
+              <input type="submit" value="rechazar" name="rechazarr">
             </form>
 
           <?php
               }
           ?>
-        </td>;
+        </td>
 
 
       <?php
@@ -252,19 +252,11 @@ if (isset($_GET['Message'])) {
 
       ?>
 
-      <div class="span8">
+     
 
-      </div>
     </div>
-    <br />
+   
   </div>
-
-
-  </div>
-
-  </div>
-  </div>
-
 
 
 </body>

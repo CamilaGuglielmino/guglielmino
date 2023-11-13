@@ -231,7 +231,7 @@ if (isset($_GET['Message1'])) {
 
     ?>
     <div class="contenedor">
-      <form method="POST" enctype="multipart/form-data" action="basedatos/BDalojamiento.php?ID<?php echo $ID; ?>">
+      <form method="POST" enctype="multipart/form-data" action="BDalojamiento.php?ID=<?php echo $ID; ?>">
         <h4 class="titulo"> Informaci&oacuten del alojamiento:</h4>
 
         <div class="row">
