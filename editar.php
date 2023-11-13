@@ -9,39 +9,25 @@ echo"$email";
 
 if (isset($_POST['editar'])) {
     echo"$email";
-        
-        $usuario = $_POST['usuario'];
-        $contraseña = $_POST['contraseña'];
-        $contraseña2 = $_POST['contraseña2'];
+    
         $Nombre = trim($_POST['nombre']);
         $Apellido = trim($_POST['apellido']);
         $edad = trim($_POST['edad']);
         $numero = trim($_POST['numero']);
         $intereses = trim($_POST['intereses']);
-        $imagen = '';
-    
-        $nombreimg = $_FILES["imagen"]["name"];
-        $archivo = $_FILES["imagen"]["tmp_name"];
-        $ruta ="img_perfil";
-        $ruta = $ruta."/".$nombreimg;
-        move_uploaded_file($archivo,$ruta);
-        $imagen = $ruta;
-       
-        $sql = "UPDATE registrousuario SET usuario='$usuario', contra='$contraseña', contra2='$contraseña2', nombre='$Nombre', apellido='$Apellido', edad='$edad', telefono='$numero', intereses = '$intereses', imagen = '$imagen' where correo='$email'";
+ 
+        $sql = "UPDATE registrousuario SET nombre='$Nombre', apellido='$Apellido', edad='$edad', telefono='$numero', intereses = '$intereses' where correo='$email'";
         $resultado = mysqli_query($conexRapiBnB,$sql);
-          
-         
-  
-        
-        //session_start();
-        // $_SESSION['user'] = $Email;
-        // $ej = mysqli_num_rows($resultado);
         if ($resultado) {
             echo"$email";
             session_start();
             $_SESSION["user"] = $email;
-            header("Location: indexx.php");
+            $_SESSION["user"] = $email; 
+            $mensaje4 = 'Se guardaron los cambios correctamente'; // se guarda en mensaje el texto que quieras mostrar
+            header("Location: editarPerfil.php?Message4=" . urlencode($mensaje4));
         } else {
+            $mensaje4 = 'No se puede realizar los cambios en estos momentos'; // se guarda en mensaje el texto que quieras mostrar
+            header("Location: editarPerfil.php?Message4=" . urlencode($mensaje4));
         }
     }
 

@@ -1,12 +1,8 @@
 <?php 
 include("conexion.php");
-include("validar_sesion.php");
-$email = $_SESSION['user'];
-require_once("basedatos/conexion.php");
-$sql= "SELECT * FROM registrousuario where correo='$email' ";
-$result = mysqli_query($conexRapiBnB, $sql);
-$row = mysqli_fetch_array($result);
-$idu= $row["id"];
+
+
+
 
 
 if (isset($_POST['oferta'])) {

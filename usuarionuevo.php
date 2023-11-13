@@ -43,7 +43,8 @@ if (isset($_POST['registrarse'])) {
         if ($resultado) {
             session_start();
             $_SESSION["user"] = $Email;
-            header("Location: editarPerfil.php");
+            $mensaje4 = 'El usuario se creo con extio, edite el perfil para continuar'; // se guarda en mensaje el texto que quieras mostrar
+            header("Location: editarPerfil.php?Message4=" . urlencode($mensaje4));
         } else {
         }
     }

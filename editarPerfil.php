@@ -4,9 +4,11 @@ include("usuarionuevo.php");
 include("basedatos/BDusuarios.php");
 include("basedatos/validar_sesion.php");
 //session_start ();
+if (isset($_GET['Message1'])) {
+  print '<script type="text/javascript">alert("' . $_GET['Message1'] . '");</script>';
+}
 
 ?>
-
 <html>
 
 <head>
@@ -207,85 +209,79 @@ while ($row = mysqli_fetch_array($resultado)) {
 ?>
 
 <body>
-
-  <form action="editar.php" method="POST">
-    <h1 class="title">Bienvenido <?php echo $usuario; ?></h1>
-    <div class="container text-center">
+  <h1 class="title" style="align-items: center;">Bienvenido <?php echo $usuario; ?></h1>
+  <div class="containe" style="width: 100%;">
     <div class="row">
-      <div class="col">
-        <div class="card" style="width: 18rem;">
-          <img src="<?php echo $image ?>" class="card-img-top" alt="foto de perfil">
-          <div class="card-body">
-            <label for="formFile" class="form-label">Cambiar foto de perfil</label>
-            <input class="form-control" type="file" id="formFile" name="imagen">
+      <form action="perfil.php" method="POST" enctype="multipart/form-data">
+        <div class="col">
+          <div class="card" style="width: 18rem;">
+            <img src="<?php echo $image ?>" class="card-img-top" alt="foto de perfil" requierd>
+            <div class="card-body">
+
+              <input class="form-control" type="file" id="formFile" name="imagen">
+              <input type="submit" name="perfil" value="Cambiar Foto de Perfil">
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-6">
-        <label>Usuario: <?php echo ("$usuario") ?> </label>
-       
-        <div class="mb-3">
-          <label for="formFile" class="form-label">contraseña</label>
-          <input type="password" name="contraseña" class="form-control" value="<?php echo ("$contraseña") ?>">
-        </div>
-        <div class="mb-3">
-          <label for="formFile" class="form-label">contraseña</label>
-          <input type="password" name="contraseña2" class="form-control" value="<?php echo ("$contraseña2") ?>">
-        </div>
-          <div>
-          
-
-
-
-        </div>
-      </div>
-      <p style="align-content: center;">_______________________________________________________________________________________________________________________________________________________</p>
-
-
-      <h4 style="text-align:center;">Informaci&oacuten personal:</h4><br>
-      <div class="row g-2">
-        <div class="mb-3">
-          <label for="formFile" class="form-label">Nombre</label>
-          <input type="text" name="nombre" class="form-control" value="<?php echo ("$Nombre") ?>">
-        </div>
-        <div class="mb-3">
-          <label for="formFile" class="form-label">Apellido</label>
-          <input type="text" name="apellido" class="form-control" value="<?php echo ("$Apellido") ?>">
-        </div>
-      </div>
-      <div class="row g-2">
-        <div class="col-md">
-          <div class="form-floating">
-            <input type="number" name="edad" class="form-control" id="floatingInputGrid" placeholder="" value="<?php echo ("$edad") ?>">
-            <label for="floatingInputGrid">Edad</label>
+      </form>
+    </div>
+    <div class="col">
+    <form action="formulario.php" method="POST" enctype="multipart/form-data">
+          <label>Usuario: <?php echo ("$usuario") ?> </label>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">contraseña</label>
+            <input type="password" name="contraseña" class="form-control" value="<?php echo ("$contraseña") ?>">
+          </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">contraseña</label>
+            <input type="password" name="contraseña2" class="form-control" value="<?php echo ("$contraseña2") ?>">
+          </div>
+          <input type="submit" name="cambiarContraseña" value="Cambiar Contraseña">
+          <input type="submit" name="verificacion" value="Solicitar verificacion">
+    </form>
+    </div>
+  </div>
+<p style="align-content: center;">_______________________________________________________________________________________________________________________________________________________</p>
+<div class="row">
+<form action="editar.php" method="POST" enctype="multipart/form-data">
+        <h4 style="text-align:center;">Informaci&oacuten personal:</h4><br>
+        <div class="row g-2">
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" value="<?php echo ("$Nombre") ?>">
+          </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Apellido</label>
+            <input type="text" name="apellido" class="form-control" value="<?php echo ("$Apellido") ?>">
           </div>
         </div>
-        <div class="col-md">
-          <div class="form-floating">
-            <input type="number" name="numero" class="form-control" id="floatingInputGrid" placeholder="" value="<?php echo ("$numero") ?>">
-            <label for="floatingInputGrid">telefono</label>
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="number" name="edad" class="form-control" id="floatingInputGrid" placeholder="" value="<?php echo ("$edad") ?>">
+              <label for="floatingInputGrid">Edad</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="number" name="numero" class="form-control" id="floatingInputGrid" placeholder="" value="<?php echo ("$numero") ?>">
+              <label for="floatingInputGrid">telefono</label>
+            </div>
           </div>
         </div>
-      </div>
+        <div class="row">
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Interéses</label>
+          <input type="text" name="intereses" class="form-control" value="<?php echo ("$intereses") ?>">
+        </div>
+        </div>
+ 
+        <input class="submit" type="submit" name="editar" value="Guardar Cambios">
+      
+    </form>
+    <br>
 
-      <div class="mb-3">
-        <label for="formFile" class="form-label">Interéses</label>
-        <input type="text" name="intereses" class="form-control" value="<?php echo ("$intereses") ?>">
-
-      </div>
-
-      <div class="mb-3">
-        <label for="formFile" class="form-label">Cambiar foto de perfil</label>
-        <input class="form-control" type="file" id="formFile">
-      </div>
-      <div class="inputContainer">
-        <input class="submitBtn" type="submit" name="editar" value="Guardar Cambios">
-      </div>
-      <br>
-      <br>
-
-
-  </form>
+</div>
 
 </body>
 

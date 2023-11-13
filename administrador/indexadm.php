@@ -2,6 +2,10 @@
 <?php
 require_once '../basedatos/validar_sesion.php';
 $email = $_SESSION['user'];
+if (isset($_GET['Message'])) {
+  print '<script type="text/javascript">alert("' . $_GET['Message'] . '");</script>';
+  
+           }
 
 ?>
 <head>
@@ -20,7 +24,7 @@ $email = $_SESSION['user'];
     <div class="grid-container">
       <div class="grid-item" style="text-align: left;">
 
-        <a href="indexx.php"> <img alt="logo" src="../img/logo1.png" style="width: 7em; "></a>
+        <a href="indexadm.php"> <img alt="logo" src="../img/logo1.png" style="width: 7em; "></a>
       </div>
       <div class="grid-item" style="text-align: center; padding: 20px;">
         <form class="d-flex" role="search">

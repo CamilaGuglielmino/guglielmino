@@ -328,13 +328,7 @@ require_once 'basedatos\validar_sesion.php';
         <input type="file" name="imagen5" >
         <small>Obligatorio 3 imagenes</small>
         </div>
-        <p style="text-align:left;"> Duraci&oacuten activa:</p><br>
-
-        Fecha inicio:<br>
-        <input type="date" name="inicioOferta"> <br><br>
-
-        Fecha fin:<br>
-        <input type="date" name="finOferta"> <br>
+  
 
         <input type="submit" class="submitBtn" name="oferta" value="Crear registro">
 

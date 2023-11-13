@@ -17,7 +17,9 @@
             header("Location: indexx.php?Message=" . urlencode($mensaje));
    
         }else{
-            header("Location: administrador/indexadm.php");
+            $mensaje = 'Bienvenido';
+           
+            header("Location: administrador/indexadm.php?Message=" . urlencode($mensaje));
         }  
         
     }
