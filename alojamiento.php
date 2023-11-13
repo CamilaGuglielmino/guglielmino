@@ -226,54 +226,51 @@ $ID = isset($_GET['ID']) ? $_GET['ID'] : '';
   if ($resultado) {
     while ($record = mysqli_fetch_array($resultado)) {
   ?>
-      <div class="container-fluid">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="<?php echo $record['imagen']; ?>" class="d-block " alt="..." style="align-content: center !important;">
-            </div>
-            <div class="carousel-item">
-              <img src="<?php echo $record['imagen2']; ?>" class="d-block w-50 h-50" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="<?php echo $record['imagen3']; ?>" class="d-block w-50 h-50" alt="...">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+      <div class="contenedor">
+      <div class="row">
+        <div class="col">
+          <img src="<?php echo $record['imagen']; ?>" class="img-fluid" alt="...">
+        </div>
+        <div class="col">
+          <img src="<?php echo $record['imagen2']; ?>" class="img-fluid" alt="...">
+        </div>
+        <div class="col">
+          <img src="<?php echo $record['imagen3']; ?>" class="img-fluid" alt="...">
         </div>
       </div>
-      <div class="col">
-        <div class="row-cols-auto">
+      
+        
+      </div>
+      <div class="contenedor">
+        <div class="row">
           <div class="col">
-            <div class="text-decoration-underline" style="align-items: center;">
-              <h1><?php echo $record['titulo']; ?></h1>
-            </div>
+            <div class="titulo">
+              <h2 ><?php echo $record['titulo']; ?> </h2> 
+              
+              <h4> <?php echo $record['ciudad']; ?>, <?php echo $record['Provincia']; ?></h4>
           </div>
         </div>
-        <div class="row-cols-auto">
-          <div class="col">
-            <div class="text-bg-light" style="align-items: center;">
-              <h2><?php echo $record['descripcion']; ?></h1>
-            </div>
-          </div>
         </div>
-        <div class="row-cols-auto">
-          <div class="col-lg-auto" style="align-items: center !important;">
-            <h3>Anfitrion: <?php echo $record['idusuario']; ?></h1>
+    
+          <div class="row">
+            <div class="col">
+            <h3><?php echo $record['descripcion']; ?></h1>
           </div>
-          <div class="col-lg-auto" style="align-items: center !important;">
-            <h1>aca quiero algo<?php echo $record['descripcion']; ?></h1>
           </div>
+        
+        <div class="row">
+            <h3>Anfitrion: <?php echo $record['idusuario']; ?></h3>
+        </div>
+        <div class="col">
+          <?php
+  
+          ?>
+            <h3>Servicios<?php echo $record['Servicios']; ?></h3>
+        </div>
 
         </div>
-      </div>
+        </div>
+      
       <?php 
       $idusuario=$record['idusuario'];
       $idalojamiento= $ID;

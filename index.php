@@ -209,6 +209,13 @@
 
   </section>
   <section class="contendor-body">
+  
+  <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">
+  
+    <?php
+    include("mostrar/mostrar-tarjeta.php");
+    ?>
+  </div>
   <?php
     if(isset($_GET['enviar'])){
         $busqueda = $_GET['dato'];
@@ -218,17 +225,10 @@
         $consulta = mysqli_query($conexRapiBnB,$consul);
 
         while ($record = mysqli_fetch_assoc($consulta)) {
-            ?>
-  <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">
-  
-    <?php
-    include("mostrar/mostrar-tarjeta.php");
-    ?>
-  </div>
-  <?php
+          
         }
       }
-        ?>
+  ?>
   </section>
 </main>
 </body>
@@ -271,6 +271,7 @@
   <h6 class="titulo-final">&copy; Programación III | Camila Guglielmino | 2023</h6>
   
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 

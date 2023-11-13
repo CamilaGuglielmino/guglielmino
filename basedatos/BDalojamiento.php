@@ -1,6 +1,11 @@
 <?php 
 include("conexion.php");
 $id= isset($_GET['ID']) ? $_GET['ID'] : '';
+$consul="SELECT * FROM registrousuario WHERE id='$id'";
+$result = mysqli_query($conexRapiBnB,$consul);
+$row=mysqli_fetch_array($result);
+
+
 
 if (isset($_POST['oferta'])) {
         $ID = mt_rand(1,999);
@@ -56,17 +61,31 @@ if (isset($_POST['oferta'])) {
         $ruta = $ruta."/".$nombreimg;
         move_uploaded_file($archivo,$ruta);  
         $image5 = $ruta;
-
-	    $consulta = "INSERT INTO registroalojamiento(ID, idusuario, Provincia, ciudad, direccion, tipoPropiedad, serviciosBasicos,costo,cupo,titulo,descripcion,imagen, imagen2, imagen3, imagen4, imagen5) VALUES ( '$ID', '$idu','$provincia','$ciudad','$direccion','$tipo_propiedad','$servicios','$costo','$cupo','$titulo','$descripcion','$image1', '$image2', '$image3', '$image4', '$image5')";
-	    $resultado = mysqli_query($conexRapiBnB,$consulta);
-      
-
-	    if ($resultado) {
-                $mensaje4 = 'Se guardaron los cambios correctamente'; // se guarda en mensaje el texto que quieras mostrar
+        
+        if($row["tipo"]== "Regular" or $row["tipo"]== "En espera" ){
+                $status="En espera";
+	        $consulta = "INSERT INTO registroalojamiento(ID, idusuario, Provincia, ciudad, direccion, tipoPropiedad, serviciosBasicos,costo,cupo,titulo,descripcion,imagen, imagen2, imagen3, imagen4, imagen5,statu) VALUES ( '$ID', '$idu','$provincia','$ciudad','$direccion','$tipo_propiedad','$servicios','$costo','$cupo','$titulo','$descripcion','$image1', '$image2', '$image3', '$image4', '$image5', '$status')";
+	        $resultado = mysqli_query($conexRapiBnB,$consulta);
+	        if ($resultado) {
+                
+                 $mensaje4 = 'Su publicacion esta en espera'; // se guarda en mensaje el texto que quieras mostrar
                 header("Location: ../indexx.php?Message4=" . urlencode($mensaje4));
+                }else{
+                        $mensaje4 = 'No se puede realizar los cambios en estos momentos'; // se guarda en mensaje el texto que quieras mostrar
+                        header("Location: ../formularioalojamiento.php?Message4=" . urlencode($mensaje4)); 
+                }
+               
         } else {
-            $mensaje4 = 'No se puede realizar los cambios en estos momentos'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: ../formularioalojamiento.php?Message4=" . urlencode($mensaje4));
+                $status="Activo";
+	        $consulta = "INSERT INTO registroalojamiento(ID, idusuario, Provincia, ciudad, direccion, tipoPropiedad, serviciosBasicos,costo,cupo,titulo,descripcion,imagen, imagen2, imagen3, imagen4, imagen5,statu) VALUES ( '$ID', '$idu','$provincia','$ciudad','$direccion','$tipo_propiedad','$servicios','$costo','$cupo','$titulo','$descripcion','$image1', '$image2', '$image3', '$image4', '$image5', '$status')";
+	        $resultado = mysqli_query($conexRapiBnB,$consulta);
+                if ($resultado) {
+                $mensaje4 = 'Publicacion creada'; // se guarda en mensaje el texto que quieras mostrar
+                header("Location: ../indexx.php?Message4=" . urlencode($mensaje4));
+                }else{
+                $mensaje4 = 'No se puede realizar los cambios en estos momentos'; // se guarda en mensaje el texto que quieras mostrar
+                header("Location: ../formularioalojamiento.php?Message4=" . urlencode($mensaje4));                 
+                }
         }
 	    	
 }
