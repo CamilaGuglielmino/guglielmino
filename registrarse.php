@@ -1,4 +1,8 @@
 <html>
+<?php
+        if (isset($_GET['Message'])) {
+            print '<script type="text/javascript">alert("' . $_GET['Message'] . '");</script>';
+        } ?>
 
 <head>
     <meta charset="utf-8">
@@ -21,39 +25,39 @@
                     <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
                 </div>
                 <div class="grid-item" style="text-align: center; padding: 20px;">
-                    <form class="d-flex" role="search" method="GET" action="index.php">
+                <form class="d-flex" role="search" method="GET" action="buscador.php">
+        
+        <select id="busqueda" name="busqueda" class="form-select" style="width: 30%; ">
+              <option selected>Provincia</option>
+              <option value="San Luis">San Luis</option>
+              <option value="Buenos Aires">Buenos Aires</option>
+              <option value="Catamarca">Catamarca</option>
+              <option value="Chaco">Chaco</option>
+              <option value="Cordoba">C&oacuterdoba</option>
+              <option value="Corrientes">Corrientes</option>
+              <option value="Entre Rios">Entre R&iacuteos</option>
+              <option value="Formosa">Formosa</option>
+              <option value="Jujuy">Jujuy</option>
+              <option value="La Pampa">La Pampa</option>
+              <option value="La Rioja">La Rioja</option>
+              <option value="Mendoza">Mendoza</option>
+              <option value="Misiones">Misiones</option>
+              <option value="Neuquen">Neuqu&eacuten</option>
+              <option value="Rio Negro">R&iacuteo Negro</option>
+              <option value="Salta">Salta</option>
+              <option value="San Juan">San Juan</option>
+              <option value="Santa Cruz">Santa Cruz</option>
+              <option value="Santa Fe">Santa Fe</option>
+              <option value="Santiago del Estero">Santiago del Estero</option>
+              <option value="Tucuman">Tucum&aacuten</option>
+              <option value="Tierra del Fuego">Tierra del Fuego</option><br>
+            </select>
 
-                        <select id="provincia" name="provincia" class="form-select" aria-label="Default select example" style="width: 30%;">
-                            <option selected>Provincia</option>
-                            <option value="San Luis">San Luis</option>
-                            <option value="Buenos Aires">Buenos Aires</option>
-                            <option value="Catamarca">Catamarca</option>
-                            <option value="Chaco">Chaco</option>
-                            <option value="Cordoba">C&oacuterdoba</option>
-                            <option value="Corrientes">Corrientes</option>
-                            <option value="Entre Rios">Entre R&iacuteos</option>
-                            <option value="Formosa">Formosa</option>
-                            <option value="Jujuy">Jujuy</option>
-                            <option value="La Pampa">La Pampa</option>
-                            <option value="La Rioja">La Rioja</option>
-                            <option value="Mendoza">Mendoza</option>
-                            <option value="Misiones">Misiones</option>
-                            <option value="Neuquen">Neuqu&eacuten</option>
-                            <option value="Rio Negro">R&iacuteo Negro</option>
-                            <option value="Salta">Salta</option>
-                            <option value="San Juan">San Juan</option>
-                            <option value="Santa Cruz">Santa Cruz</option>
-                            <option value="Santa Fe">Santa Fe</option>
-                            <option value="Santiago del Estero">Santiago del Estero</option>
-                            <option value="Tucuman">Tucum&aacuten</option>
-                            <option value="Tierra del Fuego">Tierra del Fuego</option><br>
-                        </select>
-
-                        <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato">
-                        <input class="form-control me-2" type="search" placeholder="Etiquetas" aria-label="Search" name="etiqueta">
-
-                        <input class="btn-bottom"  type="submit" name="enviar" value="Buscar">
-                    </form>
+            <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato" id="dato">
+            
+        
+          <input class="btn-bottom"  type="submit" name="enviar" value="Buscar">
+        </form>
                 </div>
                 <div class="grid-item" style="text-align: right; padding: 20px; z-index: 1000;">
                     <div class="hamburger">
@@ -207,11 +211,11 @@
             </section>
             <div class="contenedor">
                 <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="ejemplo@gmail.com" name="Email" required>
+                <input type="email" class="form-control" id="floatingInput" placeholder="ejemplo@gmail.com" name="Email"  value="<?php if (isset($_GET['nom'])) echo $_GET['nom']; ?>"required>
                 <label for="floatingInput" >Email</label>
                 </div>
                 <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="usuario" name="usuario" required>
+                <input type="text" class="form-control" id="floatingInput" placeholder="usuario" name="usuario" value="<?php if (isset($_GET['usu'])) echo $_GET['usu']; ?>"required>
                 <label for="floatingInput">Usuario</label>  
                 </div>
                 <div class="form-floating mb-3">                    

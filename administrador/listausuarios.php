@@ -4,20 +4,20 @@ require_once '../basedatos/validar_sesion.php';
 $email = $_SESSION['user'];
 if (isset($_GET['Message'])) {
   print '<script type="text/javascript">alert("' . $_GET['Message'] . '");</script>';
-  
 }
 
 ?>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../externo/estilos.css" type="text/css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <title>
-        Rapibnb
-    </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../externo/estilos.css" type="text/css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <title>
+    Rapibnb
+  </title>
 </head>
 <header>
   <nav>
@@ -180,98 +180,108 @@ if (isset($_GET['Message'])) {
       </div>
   </nav>
 </header>
+
 <body>
-    <div class="navbar">
-        <div class="navbar-inner">
-            <div class="container">
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li class=""><a href="indexadm.php">ADMINISTRADOR DEL SITIO</a></li>
-                    </ul>
-                    <form action="#" class="navbar-search form-inline" style="margin-top:6px">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class=""><a href="indexadm.php">ADMINISTRADOR DEL SITIO</a></li>
+          </ul>
+          <form action="#" class="navbar-search form-inline" style="margin-top:6px">
 
-                    </form>
-                    <ul class="nav pull-right">
-                       
-                        
-                    </ul>
-                </div>
-            </div>
+          </form>
+          <ul class="nav pull-right">
+
+
+          </ul>
         </div>
+      </div>
     </div>
-    <div class="row">
-                <h2 class="titulo"> Administración de usuarios registrados</h2>
-                    <h4 class="titulo">Tabla de Usuarios</h4>
+  </div>
+  <div class="row">
+    <h2 class="titulo"> Administración de usuarios registrados</h2>
+    <h4 class="titulo">Tabla de Usuarios</h4>
 
-                    <div class="row-fluid">
+    <div class="row-fluid">
 
-                        <?php
+      <?php
 
-                        require('../basedatos/conexion.php');
-                        $sql = ("SELECT * FROM registrousuario");
+      require('../basedatos/conexion.php');
+      $sql = ("SELECT * FROM registrousuario");
 
-                        $query = mysqli_query($conexRapiBnB, $sql);
+      $query = mysqli_query($conexRapiBnB, $sql);
 
-                        echo "<table border='1' class='table table-hover'>";
-                        echo "<tr class='warning'>";
-                        echo "<td>Tipo de Usuario</td>";
-                        echo "<td>ID</td>";
-                        echo "<td>correo</td>";
-                        echo "<td>usuario</td>";
-                        echo "<td>contraseña</td>";
-                        echo "<td>Validar</td>";
-
-                    
-                        echo "</tr>";
-
-                        ?>
-
-                        <?php
-                        while ($arreglo = mysqli_fetch_array($query)) {
-                            ?>
-                            <td> <?php echo $arreglo['tipo']  ?></td>
-                            <td> <?php echo $arreglo['id']  ?></td>
-                            <td> <?php echo $arreglo['correo']  ?></td>
-                            <td> <?php echo $arreglo['usuario']  ?></td>
-                            <td> <?php echo $arreglo['contra']  ?></td>
-                            <td> <?php
-                            $ID=$arreglo['id'] ;
-                           
-                            
-                             if($arreglo['tipo']=='En espera'){ ?>
-                             <form method="POST" action="validar.php?ID=<?php echo $ID;?>">
-                                <input type="submit" value="validar" name="validar">
-                                <input type="submit" value="rechazarr" name="rechazar">
-                             </form>
-
-                            <?php
-                             }
-                            ?></td>
+      echo "<table border='1' class='table table-hover'> ";
+      echo "<tr class='warning'>";
+      echo "<td>Tipo de Usuario</td>";
+      echo "<td>ID</td>";
+      echo "<td>Correo</td>";
+      echo "<td>Usuario</td>";
+      echo "<td>Nombre y apellido</td>";
+      echo "<td>Foto de perfil</td>";
+      echo "<td>Documentación</td>";
+      echo "<td>Validar</td>";
 
 
-<?php
-                            echo "</tr>";
-                        }
+      echo "</tr>";
 
-                        echo "</table>";
+      ?>
+
+      <?php
+      while ($arreglo = mysqli_fetch_assoc($query)) {
+        $image = $arreglo['imagen']; ?>
+
+        <td> <?php echo $arreglo['tipo']  ?></td>
+        <td> <?php echo $arreglo['id']  ?></td>
+        <td> <?php echo $arreglo['correo']  ?></td>
+        <td> <?php echo $arreglo['usuario']  ?></td>
+        <td> <?php echo $arreglo['nombre']; ?> <?php echo $arreglo['apellido']  ?></td>
+        <td><img src="../<?php echo $image ?>" alt="foto de perfil" style="width: 100px; height: 100px"></td>
+
+        <td> <a href="../<?php echo $arreglo['files'] ?>" target="_blank"><?php echo $arreglo['files']  ?></a></td>
+
+        <td> <?php
+
+              $ID = $arreglo['id'];
 
 
-                        ?>
+              if ($arreglo['tipo'] == 'En espera') { ?>
+            <form method="POST" action="validar.php?ID=<?php echo $ID; ?>">
+              <input type="submit" value="validar" name="validar">
+              <input type="submit" value="rechazarr" name="rechazar">
+            </form>
 
-                        <div class="span8">
-
-                        </div>
-                    </div>
-                    <br />
-                </div>
+          <?php
+              }
+          ?>
+        </td>
 
 
-            </div>
+      <?php
+        echo "</tr>";
+      }
 
-        </div>
+      echo "</table>";
+
+
+      ?>
+
+      <div class="span8">
+
+      </div>
     </div>
-  
- 
+    <br />
+  </div>
+
+
+  </div>
+
+  </div>
+  </div>
+
+
 
 </body>
 

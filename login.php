@@ -14,7 +14,7 @@
         $admi="adm@gmail.com";
         if(!($email == $admi)){
             $mensaje = 'Bienvenido'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: indexx.php?Message=" . urlencode($mensaje));
+            header("Location: index.php?Message=" . urlencode($mensaje));
    
         }else{
             $mensaje = 'Bienvenido';

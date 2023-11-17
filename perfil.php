@@ -27,12 +27,12 @@ if (isset($_POST['perfil'])) {
             echo"$email";
             session_start();
             $_SESSION["user"] = $email;
-            $mensaje1 = 'Se cambio correctamente su foto de perfil'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: editarPerfil.php?Message1=" . urlencode($mensaje1));
+            $mensaje = 'Se cambio correctamente su foto de perfil'; // se guarda en mensaje el texto que quieras mostrar
+            header("Location: editarPerfil.php?Message=" . urlencode($mensaje));
            
         } else {
             $mensaje1 = 'No se pudo cambiar su foto de perfil'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: editarPerfil.php?Message1=" . urlencode($mensaje1));
+            header("Location: editarPerfil.php?Message=" . urlencode($mensaje));
         }
     }
 

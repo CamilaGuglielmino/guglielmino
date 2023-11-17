@@ -16,28 +16,36 @@ if (isset($_POST['cambiarContraseña'])) {
         if ($resultado) {    
             session_start();
             $_SESSION["user"] = $email; 
-            $mensaje2 = 'Se cambio correctamente su contraseña'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: editarPerfil.php?Message1=" . urlencode($mensaje2));
+            $mensaje = 'Se cambio correctamente su contraseña'; // se guarda en mensaje el texto que quieras mostrar
+            header("Location: editarPerfil.php?Message=" . urlencode($mensaje));
            
         } else {
             $mensaje2 = 'No se pudo cambiar su foto de perfil'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: editarPerfil.php?Message1=" . urlencode($mensaje2));
+            header("Location: editarPerfil.php?Message=" . urlencode($mensaje));
         }
 }
 if (isset($_POST['verificacion'])) {
+    $archivo = '';
+    $nombrefile = $_FILES["archivo"]["name"];
+    $archivo2 = $_FILES["archivo"]["tmp_name"];
+    $ruta ="documento";
+    $ruta = $ruta."/".$nombrefile;
+    move_uploaded_file($archivo2,$ruta);
+    $archivo = $ruta;
+    
 
     $tipo = 'En espera';
     
-        $sql = "UPDATE registrousuario SET tipo = '$tipo' where correo='$email'";
+        $sql = "UPDATE registrousuario SET tipo = '$tipo', files = '$archivo' where correo='$email'";
         $resultado = mysqli_query($conexRapiBnB,$sql);
         
         if ($resultado) {
             
-            $mensaje3 = 'Se evaluara su verificación'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: editarPerfil.php?Message1=" . urlencode($mensaje3));
+            $mensaje = 'Se evaluara su verificación'; // se guarda en mensaje el texto que quieras mostrar
+            header("Location: editarPerfil.php?Message=" . urlencode($mensaje));
            
         } else {
-            $mensaje2 = 'No se pudo cambiar su foto de perfil'; // se guarda en mensaje el texto que quieras mostrar
-            header("Location: editarPerfil.php?Message1=" . urlencode($mensaje2));
+            $mensaje = 'No se pudo cambiar su foto de perfil'; // se guarda en mensaje el texto que quieras mostrar
+            header("Location: editarPerfil.php?Message=" . urlencode($mensaje));
         }
 }

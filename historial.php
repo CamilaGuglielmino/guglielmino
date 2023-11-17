@@ -1,4 +1,7 @@
-<html>
+<html><?php
+include("basedatos/conexion.php");
+require_once("basedatos/validar_sesion.php");
+      ?>
 
 <head>
   <meta charset="utf-8">
@@ -12,22 +15,17 @@
   </title>
 </head>
 
-<?php
-include("basedatos/conexion.php");
-require_once("basedatos/validar_sesion.php");
-?>
-
 <body>
   <header>
     <nav>
       <div class="grid-container">
         <div class="grid-item" style="text-align: left; padding: 20px;">
-          <a href="indexx.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
+          <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
         </div>
         <div class="grid-item" style="text-align: center; padding: 20px;">
-          <form class="d-flex" role="search" method="GET" action="index.php">
+          <form class="d-flex" role="search" method="GET" action="buscador.php">
 
-            <select id="provincia" name="provincia" class="form-select" aria-label="Default select example" style="width: 30%;">
+            <select id="busqueda" name="busqueda" class="form-select" style="width: 30%; ">
               <option selected>Provincia</option>
               <option value="San Luis">San Luis</option>
               <option value="Buenos Aires">Buenos Aires</option>
@@ -52,11 +50,8 @@ require_once("basedatos/validar_sesion.php");
               <option value="Tucuman">Tucum&aacuten</option>
               <option value="Tierra del Fuego">Tierra del Fuego</option><br>
             </select>
-
-            <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato">
-            <input class="form-control me-2" type="search" placeholder="Etiquetas" aria-label="Search" name="etiqueta">
-
-            <input class="btn btn-primary" type="submit" name="enviar" value="BUSCAR">
+            <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato" id="dato">
+            <input class="btn-bottom" type="submit" name="enviar" value="Buscar">
           </form>
         </div>
         <div class="grid-item" style="text-align: right; padding: 20px; z-index: 1000;">
@@ -210,101 +205,244 @@ require_once("basedatos/validar_sesion.php");
 
     $email = $_SESSION['user'];
     $variable = isset($_GET['variable']) ? $_GET['variable'] : '';
+    $usuario = base64_decode($_GET['usuario']);
+
     $consulta = "SELECT * FROM registrousuario WHERE correo = '$email'";
-    $resultado = mysqli_query($conexRapiBnB, $consulta);
-    while ($row = mysqli_fetch_array($resultado)) {
+    $resul = mysqli_query($conexRapiBnB, $consulta);
+    while ($row = mysqli_fetch_array($resul)) {
       $idusuario = $row["id"];
       $consulta2 = "SELECT * FROM registroalojamiento WHERE idusuario = '$idusuario'";
       $resultado2 = mysqli_query($conexRapiBnB, $consulta2);
+
       if ($variable == '1') {
         while ($record = mysqli_fetch_array($resultado2)) {
+          $id = $record['ID'];
     ?>
-          <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">
-            <div class="col">
-              <div class="card shadow sm" id="card">
-                <img alt="" src="<?php echo $record['imagen']; ?>" class="img-thumbnail" alt="foto de perfil" style="position: static;">
-                <div class="card-body">
-                  <h5 class="card-title"><a href="alojamiento.php?ID=<?php echo $ID; ?>"><?php echo $record['titulo']   ?></a></h5>
-                  <p class="card-text"><?php echo $record['descripcion']; ?>
-                </div>
+          <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="cuenta.php"><?php echo $usuario ?></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="editarPerfil.php">Editar Perfil</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="historial.php?variable=1&usuario=<?php echo base64_encode($usuario); ?>"> Mis Alojamientos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="historial.php?variable=2&usuario=<?php echo base64_encode($usuario); ?>">Mis Reservas</a>
+                  </li>
+                  </li>
+                 
+                  </li>
 
-                <div class="d-flex justify-content.between aling-items-center">
-                  <div class="desc"><?php echo $record['ciudad']; ?></div>
-                  <div class="desc"><?php echo $record['costo']; ?></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <?php
-        }
-      } else { ?>
-
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <div class="nav-collapse">
-                <ul class="nav">
-                  <li class=""><a >Reservas</a></li>
                 </ul>
 
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-         
-          <div class="row-fluid">
-            <?php
+          </nav>
+          <?php
+          $estado = $record['statu'];
+          if ($estado == 'activo') { ?>
+          <h3 class="titulo">Mis Publicaciones Activas</h3>
+            <div class="contenedor">
+              <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">
+                <div class="col">
+                  <div class="card shadow sm" id="card">
+                    <img alt="" src="<?php echo $record['imagen']; ?>" class="img-thumbnail" alt="foto de perfil" style="position: static;">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="alojamiento.php?ID=<?php echo base64_encode($id); ?>"><?php echo $record['titulo']   ?></a></h5>
+                      <p class="card-text"><?php echo $record['descripcion']; ?>
+                    </div>
 
-            require('../basedatos/conexion.php');
-            $sql = ("SELECT * FROM registroreserva");
+                    <div class="d-flex justify-content.between aling-items-center">
+                      <div class="desc"><?php echo $record['ciudad']; ?>, <?php echo $record['Provincia']; ?> </div>
+                      <br>
+                      <div class="desc">  $<?php echo $record['costo']; ?></div>
+                      </div>
+                      <a href="historial.php?variable=1&usuario=<?php echo base64_encode($usuario); ?>">
+                     <?php 
+                        if(isset($_POST['desactivar'])){
+                        $estado='';
+                        $consulta = "UPDATE registroalojamiento SET statu='$estado' WHERE idusuario='$idusuario'";
+                        
+                        $resultado = mysqli_query($conexRapiBnB,$consulta);
+                        if($resultado){
+                        }
+                        }
+                      ?>
+                      <form method="post" action="">
+                      <input type="button" name="desactivar"  value="desactivar publicación">
+                      </form>
+                      
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php
+          } else  if ($estado == 'En espera') { ?>
+          <h3 class="titulo">Mis Publicaciones en Espera</h3>
+            <div class="contenedor">
+              <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">
+                <div class="col">
+                  <div class="card shadow sm" id="card">
+                    <img alt="" src="<?php echo $record['imagen']; ?>" class="img-thumbnail" alt="foto de perfil" style="position: static;">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="alojamiento.php?ID=<?php echo base64_encode($id); ?>"><?php echo $record['titulo']   ?></a></h5>
+                      <p class="card-text"><?php echo $record['descripcion']; ?>
+                    </div>
 
-            $query = mysqli_query($conexRapiBnB, $sql);
+                    <div class="d-flex justify-content.between aling-items-center">
+                      <div class="desc"><?php echo $record['ciudad']; ?>, <?php echo $record['Provincia']; ?></div>
+                      <div class="desc"><?php echo $record['costo']; ?></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php
+          } else  if ($estado == 'inactivo') { ?>
+          <h3 class="titulo">Mis Publicaciones Inactivas</h3>
 
-            echo "<table border='1'; class='table table-hover';>";
+            <div class="contenedor">
+              <div class="row row-cols1 row-cols-sm-2 row-cols-md-3 g-3" id="card">
+                <div class="col">
+                  <div class="card shadow sm" id="card">
+                    <img alt="" src="<?php echo $record['imagen']; ?>" class="img-thumbnail" alt="foto de perfil" style="position: static;">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="alojamiento.php?ID=<?php echo base64_encode($id); ?>"><?php echo $record['titulo']   ?></a></h5>
+                      <p class="card-text"><?php echo $record['descripcion']; ?>
+                    </div>
 
-            echo "<td>ID-Alojamiento</td>";
-            echo "<td>ID-usuario</td>";
-            echo "<td>Fecha-Inicio</td>";
-            echo "<td>Fecha-Fin</td>";
-            echo "<td>Reseña</td>";
-
-
-            echo "</tr>";
-
-            ?>
-
-            <?php
-            while ($arreglo = mysqli_fetch_array($query)) {
-            ?>
-
-              <td> <?php echo $arreglo['idalojamiento']  ?></td>
-              <td> <?php echo $arreglo['idusuario']  ?></td>
-              <td> <?php echo $arreglo['fechainicio']  ?> </td>
-              <td> <?php echo $arreglo['fechafin']  ?></td>
-              <td> <?php echo $arreglo['comentario']  ?></td>
-
-
-              <td> <?php
-
-                    if ($arreglo['comentario'] == '') { ?>
-                  <form method="POST" action="validar.php?ID=<?php echo $ID; ?>">
-                    <input type="submit" value="activar" name="activar">
-                    <input type="submit" value="rechazar" name="rechazar">
-                  </form>
-
-                <?php
-                    }
-                ?>
-              </td>
+                    <div class="d-flex justify-content.between aling-items-center">
+                      <div class="desc"><?php echo $record['ciudad']; ?>, <?php echo $record['Provincia']; ?></div>
+                      <div class="desc"><?php echo $record['costo']; ?></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         <?php
-
-            }
           }
         }
+      } else if($variable== '2'){ ?>
+                 <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="cuenta.php"><?php echo $usuario ?></a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="editarPerfil.php">Editar Perfil</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="historial.php?variable=1&usuario=<?php echo base64_encode($usuario); ?>"> Mis Alojamientos</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="historial.php?variable=2&usuario=<?php echo base64_encode($usuario); ?>">Mis Reservas</a>
+                      </li>
+                      </li>
+                      
+                      </li>
+      
+                    </ul>
+      
+                  </div>
+                </div>
+              </nav>
+      
+              <div class="contendor">
+                <h3 class="titulo">Mis reservas</h3>
+              </div>
+              <section>
+                <div class="contedor">
+                  <?php
+      
+                  $consulta3 = "SELECT * FROM registrousuario WHERE usuario = '$usuario'";
+                  $resultado3 = mysqli_query($conexRapiBnB, $consulta3);
+                  
+                  while ($array = mysqli_fetch_array($resultado3)) {
+                    $id = $array['id'];
+                    $tipo = $array["tipo"];
+
+                    
+                    
+                    $sql = "SELECT * FROM registroreserva WHERE idusuario = '$id'";
+                    $query = mysqli_query($conexRapiBnB, $sql);
+      
+                    echo "<table border='1'; class='table table-hover';>";
+                    echo "<td>Titulo</td>";
+                    echo "<td>Lugar</td>";
+                    echo "<td>Fecha-Inicio</td>";
+                    echo "<td>Fecha-Fin</td>";
+                    echo "<td>Reseña</td>";
+      
+      
+                    echo "</tr>";
+      
+                  ?>
+      
+                    <?php
+      
+                    while ($arreglo = mysqli_fetch_array($query)) { 
+                        $comentario= $arreglo["comentario"];
+                        $ida = $arreglo["idalojamiento"];
+                        $sqli = "SELECT * FROM registroalojamiento WHERE ID = '$ida'";
+                        $queryy = mysqli_query($conexRapiBnB, $sqli);
+                        while($rr=mysqli_fetch_array($queryy)){
+      ?>                    
+                        <td> <?php echo $rr['titulo']  ?></td>
+                        <td> <?php echo $rr['ciudad']  ?>, <?php echo $rr['Provincia']  ?></td>
+                        <td> <?php echo $arreglo['fechainicio']  ?> </td>
+                        <td> <?php echo $arreglo['fechafin']  ?></td>
+                        
+      
+      
+                        <td> <?php
+                         if (isset($_POST['resena'])) {
+                          $comentario=  trim($_POST['comentario']);
+                          $sql="UPDATE registroreserva SET comentario ='$comentario' where idusuario = '$id'";
+                          $resultado = mysqli_query($conexRapiBnB,$sql);
+                          if($resultado){ }
+                        }
+                        if($tipo== 'Verificado'){
+                          if($comentario== ''){?>
+                          <form method="post" action="">
+                          <input type="textera" name="comentario"> <input type="submit" name="resena" value="subir reseña">
+                        </form>
+                        <?php 
+                          }else{?>
+                        <h6><?php echo $comentario; ?></h6>
+                        <?php
+                        }
+                      }
+                      }
+                              }
+                          ?>
+                        </td>
+      
+              <?php
+                        echo "</tr>";
+      
+                        echo "</table>";
+                      }
+                    
+                  
         ?>
+          </div>
+        </section>
+                  
+     <?php }
+    }?>
 
   </main>
+
 </body>
 
 <footer>
@@ -322,7 +460,7 @@ require_once("basedatos/validar_sesion.php");
                   </svg>
                 </a>
               </div>
-              <div class="col col-lg-2"">
+              <div class="col col-lg-2">
             <a href=" https://www.facebook.com" TARGET="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-facebook" viewBox="0 0 20 20" color=#000>
                   <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
@@ -347,7 +485,5 @@ require_once("basedatos/validar_sesion.php");
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-
 
 </html>

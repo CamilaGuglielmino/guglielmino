@@ -1,7 +1,7 @@
 <?php
 require_once 'basedatos\validar_sesion.php';
-if (isset($_GET['Message1'])) {
-  print '<script type="text/javascript">alert("' . $_GET['Message1'] . '");</script>';
+if (isset($_GET['Message'])) {
+  print '<script type="text/javascript">alert("' . $_GET['Message'] . '");</script>';
 }
 ?>
 <html>
@@ -28,9 +28,9 @@ if (isset($_GET['Message1'])) {
           <a href="index.php"> <img alt="logo" src="img/logo1.png" style="width: 7em; "></a>
         </div>
         <div class="grid-item" style="text-align: center; padding: 20px;">
-          <form class="d-flex" role="search" method="GET" action="index.php">
-
-            <select id="provincia" name="provincia" class="form-select" aria-label="Default select example" style="width: 30%;">
+        <form class="d-flex" role="search" method="GET" action="buscador.php">
+        
+        <select id="busqueda" name="busqueda" class="form-select" style="width: 30%; ">
               <option selected>Provincia</option>
               <option value="San Luis">San Luis</option>
               <option value="Buenos Aires">Buenos Aires</option>
@@ -56,11 +56,11 @@ if (isset($_GET['Message1'])) {
               <option value="Tierra del Fuego">Tierra del Fuego</option><br>
             </select>
 
-            <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato">
-            <input class="form-control me-2" type="search" placeholder="Etiquetas" aria-label="Search" name="etiqueta">
-
-            <input class="btn btn-primary" type="submit" name="enviar" value="BUSCAR">
-          </form>
+            <input class="form-control me-2" type="search" placeholder="" aria-label="Search" name="dato" id="dato">
+            
+        
+          <input class="btn-bottom"  type="submit" name="enviar" value="Buscar">
+        </form>
         </div>
         <div class="grid-item" style="text-align: right; padding: 20px; z-index: 1000;">
           <div class="hamburger">
@@ -398,12 +398,17 @@ if (isset($_GET['Message1'])) {
         <div class="row">
           <div class="col">
           <div class="mb-3">
-              <label for="formFile" class="form-label"> Costo </label>
+              <label for="formFile" class="form-label"> Costo por día</label>
               <input type="text" name="costo" class="form-control" required>
             </div>
             <div class="mb-3">
               <label for="formFile" class="form-label"> Capacidad </label>
               <input type="text" name="cupo" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <h6>¿Hasta cuando quiere que este vigente este alquiler?</h6>
+              
+              <input type="date" name="fechafin" class="form-control" min="2023-11-17" required>
             </div>
 
           </div>
@@ -415,7 +420,7 @@ if (isset($_GET['Message1'])) {
           <input type="file" name="imagen4">
           <input type="file" name="imagen5"><br>
         
-          <small>Obligatorio 3 imagenes</small>
+          <small>*Obligatorio 3 imagenes</small>
 
           </div>
         </div>

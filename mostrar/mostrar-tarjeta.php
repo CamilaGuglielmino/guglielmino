@@ -21,7 +21,8 @@ while ($record = mysqli_fetch_assoc($result)) {
     <div class="card shadow sm" id="card">
       <img alt="" src="<?php echo $record['imagen']; ?>" class="img-thumbnail" alt="" style="position: static;">
       <div class="card-body">
-        <h5 class="card-title"><a href="alojamiento.php?ID=<?php echo $ID; ?>"><?php echo $record['titulo'];  ?></a></h5>
+        <h5 class="card-title"><a href="alojamiento.php?ID=<?php echo base64_encode($ID); ?>">
+        <?php echo $record['titulo'];  ?></a></h5>
         <p class="card-text"><?php echo $record['descripcion']; ?> </p>
         <p class="card-text"><?php echo $record['ciudad']; ?>; <?php echo $record['Provincia'];  ?></p>
       </div>

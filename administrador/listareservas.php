@@ -206,7 +206,7 @@ if (isset($_GET['Message'])) {
       $query = mysqli_query($conexRapiBnB, $sql);
 
       echo "<table border='1'; class='table table-hover';>";
-     
+      echo "<td>ID-reserva </td>";
       echo "<td>ID-Alojamiento</td>";
       echo "<td>ID-usuario</td>";
       echo "<td>Fecha-Inicio</td>";
@@ -221,6 +221,7 @@ if (isset($_GET['Message'])) {
       <?php
       while ($arreglo = mysqli_fetch_array($query)) {
       ?>
+        <td> <?php echo $arreglo['id']  ?></td>
         
         <td> <?php echo $arreglo['idalojamiento']  ?></td>
         <td> <?php echo $arreglo['idusuario']  ?></td>
@@ -228,19 +229,6 @@ if (isset($_GET['Message'])) {
         <td> <?php echo $arreglo['fechafin']  ?></td>
         <td> <?php echo $arreglo['comentario']  ?></td>
 
-
-        <td> <?php
-              
-              if ($arreglo['comentario'] == '') { ?>
-            <form method="POST" action="validar.php?ID=<?php echo $ID; ?>">
-              <input type="submit" value="activar" name="activar">
-              <input type="submit" value="rechazar" name="rechazar">
-            </form>
-
-          <?php
-              }
-          ?>
-        </td>
 
 
       <?php
